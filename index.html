@@ -1,718 +1,1398 @@
+
 <!DOCTYPE html>
-<html lang="es-PE">
+<html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#101c30">
-  <meta name="description" content="LEX SPHERE, asociación estudiantil de Derecho de la Universidad Científica del Sur. Conoce nuestra identidad, equipo, actividades y publicaciones.">
-  <title>LEX SPHERE | Asociación Estudiantil de Derecho</title>
-  <link rel="icon" type="image/png" href="assets/logo-lex-sphere.png">
-  <meta property="og:title" content="LEX SPHERE | Asociación Estudiantil de Derecho">
-  <meta property="og:description" content="Investigación jurídica, comunidad y colaboración académica en la Universidad Científica del Sur.">
-  <meta property="og:image" content="assets/asociacion.jpg">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,500;1,600&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --navy: #101f36;
-      --navy-dark: #091426;
-      --navy-soft: #203650;
-      --gold: #c9ab73;
-      --gold-light: #ead8b6;
-      --cream: #f8f6f2;
-      --white: #fff;
-      --ink: #1b2b40;
-      --muted: #667181;
-      --line: #e3dfd7;
-      --shadow: 0 24px 65px rgba(12, 24, 43, .09);
-      --serif: "Cormorant Garamond", Georgia, "Times New Roman", serif;
-      --sans: "Manrope", system-ui, Arial, sans-serif;
-      --radius: 4px;
-      --container: 1190px;
-    }
-    *, *::before, *::after { box-sizing: border-box; }
-    html { scroll-behavior: smooth; scroll-padding-top: 92px; }
-    body { margin: 0; background: var(--cream); color: var(--ink); font-family: var(--sans); line-height: 1.72; -webkit-font-smoothing: antialiased; }
-    body.modal-open, body.menu-open { overflow: hidden; }
-    img { max-width: 100%; display: block; }
-    button, input { font: inherit; }
-    button { cursor: pointer; }
-    a { color: inherit; text-decoration: none; }
-    :focus-visible { outline: 3px solid var(--gold); outline-offset: 4px; }
-    ::selection { background: var(--gold-light); color: var(--navy); }
-    .container { width: min(var(--container), calc(100% - 48px)); margin-inline: auto; }
-    .skip-link { position: fixed; top: -100px; left: 15px; z-index: 1000; background: var(--white); padding: 9px 16px; }
-    .skip-link:focus { top: 14px; }
-    .eyebrow { color: #a7834a; text-transform: uppercase; font-size: .72rem; font-weight: 700; letter-spacing: .21em; }
-    .serif { font-family: var(--serif); font-weight: 400; }
-    .section { padding: 102px 0; }
-    .section-light { background: #fff; }
-    .section-dark { color: var(--cream); background: var(--navy); }
-    .section-head { max-width: 750px; margin-bottom: 40px; }
-    .section-head.centered { text-align: center; margin-inline: auto; }
-    .section-head h2 { margin: 14px 0 18px; font: 500 clamp(2.7rem, 4.7vw, 4.35rem)/1.03 var(--serif); letter-spacing: -.028em; }
-    .section-head p { margin: 0; color: var(--muted); font-size: 1rem; }
-    .section-dark .section-head p { color: #bbc5d2; }
-    .gold-rule { display: block; width: 54px; height: 2px; background: var(--gold); margin: 24px 0; }
-    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 13px; min-height: 48px; border-radius: 3px; border: 1px solid transparent; padding: 12px 21px; font-size: .82rem; font-weight: 700; letter-spacing: .055em; transition: transform .25s, background .25s, border-color .25s; }
-    .btn:hover { transform: translateY(-2px); }
-    .btn-primary { color: var(--navy); background: var(--gold); }
-    .btn-primary:hover { background: #e0c190; }
-    .btn-outline { color: #fff; border-color: rgba(255,255,255,.45); background: rgba(255,255,255,.04); }
-    .btn-outline:hover { border-color: var(--gold); }
-    .btn-line { color: var(--navy); border-bottom: 1px solid var(--gold); padding: 6px 1px; min-height: auto; }
-    .btn-line:hover { transform: none; color: #997746; }
-    .arrow { font-size: 1.22em; line-height: 1; }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#101d32">
+<meta name="description" content="LEX SPHERE, asociación estudiantil de Derecho de la Universidad Científica del Sur.">
+<title>LEX SPHERE | Asociación de Derecho</title>
 
-    /* BARRA SUPERIOR Y NAVEGACIÓN */
-    .microbar { min-height: 33px; color: #e5e1d7; background: #0a111e; font-size: .69rem; letter-spacing: .1em; }
-    .microbar .container { min-height: 33px; display: flex; justify-content: space-between; align-items: center; gap: 12px; }
-    .microbar-links { display: flex; gap: 19px; letter-spacing: .025em; }
-    .microbar a:hover { color: var(--gold-light); }
-    .site-header { position: sticky; top: 0; z-index: 90; background: var(--navy); color: var(--white); border-bottom: 1px solid rgba(255,255,255,.09); }
-    .header-inner { display: flex; align-items: center; justify-content: space-between; min-height: 77px; gap: 18px; }
-    .brand { display: flex; align-items: center; flex: 0 0 auto; gap: 12px; }
-    .brand-logo { width: 53px; height: 53px; object-fit: contain; border-radius: 50%; }
-    .brand-name { font: 600 1.74rem/.91 var(--serif); letter-spacing: .085em; white-space: nowrap; }
-    .brand-sub { display: block; font: 700 .48rem/1.5 var(--sans); letter-spacing: .105em; text-transform: uppercase; color: var(--gold-light); margin-top: 5px; }
-    .desktop-nav { display: flex; gap: clamp(10px, 1.1vw, 21px); align-items: center; }
-    .desktop-nav > a, .nav-group > button { color: #f3f0e8; font-size: .73rem; font-weight: 600; letter-spacing: .01em; border: none; padding: 29px 0; background: transparent; white-space: nowrap; }
-    .desktop-nav > a:hover, .nav-group > button:hover { color: var(--gold-light); }
-    .nav-group { position: relative; }
-    .nav-group > button { display: flex; align-items: center; gap: 4px; }
-    .nav-chevron { font-size: .66rem; color: var(--gold); }
-    .nav-dropdown { display: none; position: absolute; top: calc(100% - 5px); left: -21px; min-width: 210px; padding: 10px 0; border: 1px solid rgba(255,255,255,.1); background: #15243b; box-shadow: 0 24px 45px rgba(0,0,0,.25); }
-    .nav-dropdown a { display: block; padding: 10px 19px; color: #e1e5e9; font-size: .8rem; white-space: nowrap; }
-    .nav-dropdown a:hover { background: rgba(198,167,117,.12); color: var(--gold-light); }
-    .nav-group:hover .nav-dropdown, .nav-group:focus-within .nav-dropdown { display: block; }
-    .header-cta { margin-left: 4px; font-size: .72rem; padding: 11px 13px; min-height: 42px; }
-    .menu-toggle { display: none; color: #fff; background: transparent; border: 1px solid rgba(255,255,255,.28); border-radius: 4px; padding: 8px 12px; font-size: 1.3rem; }
-    .mobile-nav { display: none; }
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-    /* PORTADA: CARRUSEL DE FOTOGRAFÍAS */
-    .hero { background: var(--navy-dark); color: white; position: relative; min-height: min(760px, 85vh); display: flex; align-items: stretch; overflow: hidden; }
-    .hero-slides, .hero-slide, .hero-media { position: absolute; inset: 0; }
-    .hero-slide { opacity: 0; visibility: hidden; transition: opacity 850ms ease, visibility 850ms; }
-    .hero-slide.is-active { opacity: 1; visibility: visible; }
-    .hero-media { overflow: hidden; background: radial-gradient(circle at 70% 42%, #34425a, #18283e 34%, #0b1423 79%); }
-    .hero-media::before { content: ""; position: absolute; inset: 0; z-index: 1; background: linear-gradient(90deg, rgba(8,18,32,.95) 0%, rgba(8,18,32,.83) 40%, rgba(8,18,32,.29) 83%, rgba(8,18,32,.22) 100%); }
-    .hero-photo { width: 100%; height: 100%; object-fit: cover; animation: slowZoom 13s ease-in-out alternate infinite; }
-    @keyframes slowZoom { from { transform: scale(1); } to { transform: scale(1.09); } }
-    .hero-art { position: absolute; inset: 0; pointer-events: none; }
-    .hero-art::before { content: ""; width: min(46vw, 620px); aspect-ratio: 1; border: 1px solid rgba(198,167,117,.28); border-radius: 50%; position: absolute; right: 1%; top: 8%; box-shadow: 0 0 0 55px rgba(198,167,117,.025), 0 0 0 108px rgba(198,167,117,.018), inset 0 0 0 55px rgba(198,167,117,.018); }
-    .hero-art::after { content: "LEX SPHERE"; position: absolute; right: 6%; bottom: 19%; color: rgba(230,218,196,.16); letter-spacing: .17em; font: 400 clamp(2rem, 5.5vw, 6rem) var(--serif); white-space: nowrap; }
-    .hero-content { position: relative; z-index: 4; width: 100%; display: flex; align-items: center; min-height: 655px; padding-top: 75px; padding-bottom: 130px; }
-    .hero-copy { max-width: 850px; padding-left: clamp(0px, 2.1vw, 32px); border-left: 1px solid rgba(201,171,115,.48); }
-    .hero-kicker { color: var(--gold-light); font-size: .72rem; font-weight: 700; letter-spacing: .23em; text-transform: uppercase; }
-    .hero h1 { margin: 23px 0 16px; font: 500 clamp(4.3rem, 7.6vw, 7.25rem)/.91 var(--serif); letter-spacing: -.029em; text-wrap: balance; }
-    .hero h1 em { color: var(--gold-light); font-weight: 400; }
-    .hero-lema { color: #f5e8d2; font: italic 500 clamp(1.15rem, 1.8vw, 1.6rem)/1.42 var(--serif); }
-    .hero-description { max-width: 540px; color: #d5d9df; margin: 22px 0 32px; font-size: .97rem; line-height: 1.8; }
-    .hero-actions { display: flex; gap: 13px; flex-wrap: wrap; }
-    .hero-bottom { position: absolute; z-index: 6; left: 0; right: 0; bottom: 31px; }
-    .hero-bottom .container { display: flex; align-items: center; justify-content: space-between; gap: 20px; }
-    .hero-controls { display: flex; align-items: center; gap: 10px; }
-    .hero-control { color: white; width: 39px; height: 39px; border: 1px solid rgba(255,255,255,.42); background: rgba(9,19,34,.4); border-radius: 50%; }
-    .hero-control:hover { color: var(--navy); background: var(--gold-light); }
-    .hero-dots { display: flex; align-items: center; gap: 8px; margin-left: 7px; }
-    .hero-dot { width: 24px; height: 3px; border: 0; padding: 0; background: #abb0b7; opacity: .55; transition: width .2s; }
-    .hero-dot.is-active { width: 47px; background: var(--gold); opacity: 1; }
-    .photo-status { font-size: .69rem; color: #c0c4c8; letter-spacing: .04em; }
-    .hero-side-label { writing-mode: vertical-rl; position: absolute; right: 22px; top: 42%; z-index: 6; letter-spacing: .25em; font-size: .63rem; color: #d4d4d2; opacity: .7; }
+<style>
+:root {
+  --navy:#101d32;
+  --navy2:#172941;
+  --gold:#c9ad7a;
+  --paper:#f8f6f2;
+  --ink:#1d2b3e;
+  --muted:#687385;
+  --border:#e5dfd6;
+  --serif:'Cormorant Garamond',Georgia,serif;
+  --sans:'Manrope',Arial,sans-serif;
+}
 
-    /* QUIÉNES SOMOS */
-    .about-layout { display: grid; grid-template-columns: 1.12fr .88fr; gap: clamp(40px, 8vw, 130px); align-items: center; }
-    .about-intro { font: 500 clamp(1.45rem, 2.5vw, 1.9rem)/1.34 var(--serif); color: var(--navy); }
-    .about-copy { color: var(--muted); margin: 17px 0 0; }
-    .about-panel { min-height: 420px; position: relative; display: flex; align-items: center; padding: 44px; background: #e9e3d8; }
-    .about-panel::before { content: ""; position: absolute; inset: 19px; border: 1px solid rgba(27,47,72,.2); }
-    .about-panel blockquote { position: relative; margin: 0; color: var(--navy); font: italic 500 clamp(2.25rem, 3.6vw, 3.6rem)/1.15 var(--serif); }
-    .about-panel small { display: block; margin-top: 28px; font: 700 .7rem var(--sans); letter-spacing: .16em; color: #8b724e; text-transform: uppercase; }
-    .values-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 26px; margin-top: 60px; }
-    .value-card { padding: 38px 36px; border: 1px solid var(--line); background: #fff; }
-    .value-number { color: #ae8b57; font: 400 1rem var(--serif); }
-    .value-card h3 { font: 600 2rem var(--serif); color: var(--navy); margin: 20px 0 12px; }
-    .value-card p { margin: 0; color: var(--muted); font-size: .94rem; }
+* { box-sizing:border-box; }
+html { scroll-behavior:smooth; scroll-padding-top:88px; }
+body {
+  margin:0;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:var(--sans);
+  line-height:1.7;
+}
+body.modal-open { overflow:hidden; }
+a { text-decoration:none; color:inherit; }
+button,input { font:inherit; }
+button { cursor:pointer; }
+img { display:block; max-width:100%; }
+h1,h2,h3,h4,p { margin-top:0; }
 
-    /* DIRECTIVA Y BIBLIOTECA DE COMISIONES */
-    .leadership-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px; max-width: 1000px; }
-    .leader-card { display: flex; align-items: center; gap: 21px; min-height: 180px; border: 1px solid rgba(255,255,255,.15); padding: 22px; background: rgba(255,255,255,.035); }
-    .avatar { flex: 0 0 auto; width: 76px; height: 76px; border: 1px solid rgba(198,167,117,.45); background: #243650; color: #e3d2b2; display: grid; place-items: center; font: 400 1.55rem var(--serif); overflow: hidden; }
-    .avatar img { width: 100%; height: 100%; object-fit: cover; object-position: center 25%; }
-    .leader-card .avatar { width: 122px; height: 146px; }
-    .leader-card h3 { font-size: 1.25rem; }
-    .leader-card h3 { margin: 0 0 3px; font: 600 1.55rem/1.1 var(--serif); }
-    .leader-card p { margin: 0; color: var(--gold-light); font-size: .76rem; }
-    .team-subhead { display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: 16px; margin: 67px 0 25px; }
-    .team-subhead h3 { font: 600 clamp(2.05rem, 3.5vw, 2.75rem) var(--serif); margin: 5px 0 0; }
-    .team-search { width: min(320px, 100%); padding: 12px 17px; outline: none; border: 1px solid rgba(255,255,255,.3); border-radius: 3px; background: #172841; color: white; font-size: .85rem; }
-    .team-search::placeholder { color: #bfc8d3; }
-    .team-search:focus { border-color: var(--gold); }
-    .commission-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 13px; align-items: start; }
-    .commission { border: 1px solid rgba(255,255,255,.2); background: #14253d; }
-    .commission[open] { border-color: var(--gold); }
-    .commission summary { position: relative; list-style: none; padding: 21px 43px 20px 23px; cursor: pointer; }
-    .commission summary::-webkit-details-marker { display: none; }
-    .commission summary::after { content: "+"; position: absolute; right: 18px; top: 23px; font-size: 1.1rem; line-height: 1; color: var(--gold); }
-    .commission[open] summary::after { content: "−"; }
-    .commission-name { display: block; font: 600 1.45rem/1.15 var(--serif); }
-    .commission-director { display: block; margin-top: 8px; font-size: .74rem; color: #b9c5d3; }
-    .commission-body { border-top: 1px solid rgba(255,255,255,.13); padding: 19px 22px 24px; }
-    .commission-body p { color: #c4cbd4; font-size: .84rem; margin: 0 0 20px; }
-    .commission-caption { color: var(--gold-light); text-transform: uppercase; font-size: .69rem; font-weight: 700; letter-spacing: .12em; margin: 0 0 11px; }
-    .commission-director-box { display: flex; gap: 14px; align-items: center; margin: 0 0 22px; }
-    .commission-director-box .avatar { width: 54px; height: 54px; font-size: 1rem; }
-    .commission-director-box strong { display: block; font-weight: 600; font-size: .86rem; }
-    .commission-director-box small { display: block; color: #b5c2d0; font-size: .75rem; }
-    .member-list { display: flex; flex-wrap: wrap; gap: 8px; }
-    .member-chip { display: inline-block; border: 1px solid rgba(255,255,255,.2); padding: 6px 11px; color: #e4e9ef; font-size: .78rem; }
-    .member-empty { font-size: .76rem; color: #bbc5d2; font-style: italic; }
-    .no-search-results { color: #e0d6c7; padding: 24px; border: 1px solid rgba(255,255,255,.2); }
+.wrap {
+  width:min(1160px,calc(100% - 40px));
+  margin:auto;
+}
+.eyebrow {
+  font-size:.7rem;
+  font-weight:800;
+  letter-spacing:.2em;
+  text-transform:uppercase;
+  color:#a78249;
+}
+.section { padding:95px 0; }
+.section.white { background:#fff; }
+.section.dark { background:var(--navy); color:#fff; }
+.section-title {
+  font:500 clamp(2.7rem,5.4vw,4.5rem)/1 var(--serif);
+  letter-spacing:-.025em;
+  margin:14px 0 20px;
+}
+.section-intro {
+  max-width:700px;
+  color:var(--muted);
+  margin-bottom:38px;
+}
+.dark .section-intro { color:#c7cfdb; }
 
-    /* ACTIVIDADES, NOTICIAS, PUBLICACIONES */
-    .blocks-head { display: flex; align-items: end; justify-content: space-between; gap: 20px; margin-bottom: 26px; }
-    .blocks-head h3 { font: 400 1.6rem var(--serif); margin: 0; }
-    .blocks-head p { margin: 7px 0 0; font-size: .85rem; color: var(--muted); }
-    .content-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 22px; }
-    .content-card { background: white; border: 1px solid var(--line); min-height: 245px; padding: 26px; display: flex; flex-direction: column; }
-    .content-card .tag { color: #96734a; font-size: .68rem; font-weight: 700; text-transform: uppercase; letter-spacing: .15em; }
-    .content-card h4 { font: 400 1.18rem/1.5 var(--serif); margin: 17px 0 12px; }
-    .content-card p { font-size: .84rem; color: var(--muted); margin: 0 0 18px; }
-    .content-card .meta { margin-top: auto; color: #7a8798; font-size: .75rem; }
-    .content-card a { margin-top: 19px; color: #966f3d; font-size: .8rem; font-weight: 700; }
-    .empty-state { border: 1px dashed #c4c2b9; min-height: 213px; background: rgba(255,255,255,.44); display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 33px 20px; }
-    .empty-state::before { content: "✦"; font-size: 1.1rem; color: #b18d59; }
-    .empty-state h4 { font: 600 1.55rem var(--serif); margin: 8px 0 7px; }
-    .empty-state p { max-width: 480px; margin: 0; font-size: .84rem; color: var(--muted); }
-    .activity-divider { border: 0; border-top: 1px solid var(--line); margin: 64px 0 52px; }
-    .calendar-layout { display: grid; grid-template-columns: 1fr .65fr; gap: 25px; }
-    .calendar-shell { padding: 24px; border: 1px solid var(--line); background: #fff; }
-    .calendar-head { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: 15px; }
-    .calendar-head h4 { margin: 0; font: 600 1.75rem var(--serif); text-transform: capitalize; }
-    .calendar-actions { display: flex; gap: 5px; }
-    .calendar-actions button { width: 37px; height: 37px; border: 1px solid var(--line); background: #fff; }
-    .calendar-actions button:hover { background: var(--cream); }
-    .calendar-grid { display: grid; grid-template-columns: repeat(7, minmax(0,1fr)); gap: 5px; }
-    .calendar-grid .weekday { text-align: center; color: var(--muted); font-size: .7rem; font-weight: 700; padding: 9px 0; }
-    .calendar-grid .day { position: relative; display: grid; place-items: center; min-height: 39px; font-size: .83rem; }
-    .calendar-grid .day.is-today { outline: 1px solid #ad8e5d; outline-offset: -3px; }
-    .calendar-grid .day.has-event { color: var(--navy); background: #f2e3cb; font-weight: 700; }
-    .calendar-grid .day.muted { opacity: 0; }
-    .calendar-agenda { border: 1px solid var(--line); background: #f2eee6; padding: 29px 28px; }
-    .calendar-agenda h4 { font: 600 1.75rem var(--serif); margin: 0 0 17px; }
-    .calendar-agenda p { font-size: .85rem; color: #667387; }
-    .agenda-event { border-top: 1px solid #d2c9ba; padding: 13px 0; }
-    .agenda-event small { color: #8b713f; font-size: .72rem; }
-    .agenda-event strong { display: block; font-size: .86rem; margin: 4px 0; }
-    .agenda-event a { color: #8f6e3d; font-size: .75rem; text-decoration: underline; }
-    .filter-row { display: flex; flex-wrap: wrap; gap: 9px; margin-bottom: 25px; }
-    .filter-btn { background: transparent; color: var(--navy); border: 1px solid #cfcac1; padding: 8px 15px; font-size: .8rem; }
-    .filter-btn.active, .filter-btn:hover { background: var(--navy); color: #fff; border-color: var(--navy); }
+.btn {
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding:12px 20px;
+  min-height:47px;
+  border:1px solid var(--gold);
+  background:var(--gold);
+  color:var(--navy);
+  font-weight:800;
+  font-size:.78rem;
+  letter-spacing:.04em;
+  transition:.2s;
+}
+.btn:hover {
+  background:#ead3ab;
+  transform:translateY(-2px);
+}
+.btn.ghost {
+  background:transparent;
+  color:#fff;
+  border-color:#c7c8cb;
+}
+.btn.ghost:hover { border-color:var(--gold); }
 
-    /* ALIANZAS, GALERÍA Y CONTACTO */
-    .alliance-intro { display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: 75px; }
-    .alliance-intro .section-head { margin-bottom: 0; }
-    .alliance-note { border-left: 2px solid var(--gold); padding-left: 24px; color: #bdc7d2; font-size: .92rem; }
-    .partner-grid { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 18px; margin-top: 34px; }
-    .partner-card { min-height: 138px; background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.17); padding: 18px; display: grid; place-items: center; text-align: center; }
-    .partner-card img { max-height: 90px; max-width: 85%; width: auto; object-fit: contain; }
-    .gallery-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 19px; }
-    .gallery-tile { text-align: left; border: 0; padding: 0; background: #e2dfd8; position: relative; overflow: hidden; aspect-ratio: 4/3; }
-    .gallery-tile img { width: 100%; height: 100%; object-fit: cover; transition: transform .55s; }
-    .gallery-tile:hover img { transform: scale(1.055); }
-    .gallery-tile span { color: #fff; position: absolute; left: 0; bottom: 0; right: 0; padding: 32px 19px 18px; background: linear-gradient(0deg, rgba(0,0,0,.79), transparent); font: 600 1.38rem var(--serif); }
-    .contact-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 70px; align-items: center; }
-    .contact-card { background: #fff; padding: 39px 38px; box-shadow: var(--shadow); border: 1px solid var(--line); }
-    .contact-item { padding: 19px 0; border-bottom: 1px solid var(--line); }
-    .contact-item:first-child { padding-top: 0; }
-    .contact-item:last-child { border-bottom: none; padding-bottom: 0; }
-    .contact-item small { display: block; text-transform: uppercase; letter-spacing: .16em; color: #9a7b51; font-size: .67rem; font-weight: 700; }
-    .contact-item a { display: inline-block; font-size: 1rem; margin-top: 7px; text-decoration: underline; text-decoration-color: var(--gold); text-underline-offset: 5px; overflow-wrap: anywhere; }
-    .contact-item a:hover { color: #987247; }
-    .contact-item p { font-size: .83rem; margin: 8px 0 0; color: var(--muted); }
-    .site-footer { background: var(--navy-dark); color: #cbd3dd; padding: 45px 0 25px; }
-    .footer-top { display: flex; justify-content: space-between; gap: 32px; padding-bottom: 29px; border-bottom: 1px solid rgba(255,255,255,.13); }
-    .footer-name { color: #fff; font: 600 2rem var(--serif); letter-spacing: .08em; }
-    .footer-top p { margin: 11px 0 0; color: #d7c6a6; font: italic .83rem var(--serif); }
-    .footer-links { display: flex; gap: 21px; flex-wrap: wrap; align-items: center; font-size: .82rem; }
-    .footer-links a:hover { color: var(--gold-light); }
-    .footer-bottom { padding-top: 22px; font-size: .71rem; color: #9ca9ba; display: flex; justify-content: space-between; gap: 12px; }
+/* ENCABEZADO */
+.topline {
+  background:#0b1424;
+  color:#e7e0d2;
+  font-size:.67rem;
+  letter-spacing:.09em;
+  padding:7px 0;
+  text-align:center;
+}
+.header {
+  position:sticky;
+  top:0;
+  z-index:40;
+  background:var(--navy);
+  color:#fff;
+  border-bottom:1px solid #ffffff20;
+}
+.header .wrap {
+  min-height:76px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:20px;
+}
+.brand {
+  display:flex;
+  gap:11px;
+  align-items:center;
+  min-width:0;
+}
+.brand img {
+  width:54px;
+  height:54px;
+  object-fit:contain;
+}
+.brand b {
+  font:600 1.85rem/.9 var(--serif);
+  letter-spacing:.04em;
+  white-space:nowrap;
+}
+.brand small {
+  display:block;
+  color:var(--gold);
+  font-size:.58rem;
+  letter-spacing:.09em;
+  margin-top:8px;
+  text-transform:uppercase;
+}
+.nav {
+  display:flex;
+  align-items:center;
+  gap:16px;
+}
+.nav a {
+  font-size:.73rem;
+  font-weight:700;
+  color:#eaeef3;
+  white-space:nowrap;
+}
+.nav a:hover { color:var(--gold); }
+.hamburger {
+  display:none;
+  background:none;
+  border:1px solid #ffffff55;
+  color:#fff;
+  border-radius:3px;
+  padding:5px 12px;
+  font-size:1.4rem;
+}
 
-    /* VISOR DE FOTOS */
-    .lightbox[hidden] { display: none; }
-    .lightbox { position: fixed; inset: 0; background: rgba(4,10,19,.96); z-index: 300; display: grid; place-items: center; padding: 60px 22px 26px; }
-    .lightbox img { max-height: 78vh; max-width: min(100%, 1050px); object-fit: contain; }
-    .lightbox-caption { color: #e8e8e8; text-align: center; font-size: .85rem; margin-top: 12px; }
-    .lightbox-close { position: absolute; right: 24px; top: 18px; color: white; font-size: 1.8rem; border: 0; background: transparent; }
-    .lightbox-wrap { max-width: 100%; display: grid; justify-items: center; }
-    .reveal { opacity: 1; transform: none; }
-    .js-ready .reveal { opacity: 0; transform: translateY(23px); transition: opacity .6s ease, transform .6s ease; }
-    .js-ready .reveal.visible { opacity: 1; transform: translateY(0); }
+/* PORTADA Y CARRUSEL */
+.hero {
+  min-height:640px;
+  position:relative;
+  display:flex;
+  align-items:center;
+  background:var(--navy);
+  color:#fff;
+  overflow:hidden;
+}
+.slides,.slide,.hero-shade {
+  position:absolute;
+  inset:0;
+}
+.slide {
+  opacity:0;
+  transition:opacity .9s ease;
+}
+.slide.active { opacity:1; }
+.slide img {
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:center 32%;
+}
+.hero-shade {
+  background:linear-gradient(
+    90deg,
+    rgba(8,17,32,.96) 0%,
+    rgba(8,17,32,.84) 40%,
+    rgba(8,17,32,.26) 100%
+  );
+}
+.hero-content {
+  z-index:1;
+  position:relative;
+  padding:100px 0 125px;
+  pointer-events:none;
+}
+.hero-content a { pointer-events:auto; }
+.hero .eyebrow { color:var(--gold); }
+.hero h1 {
+  font:500 clamp(4.1rem,9vw,8.4rem)/.87 var(--serif);
+  letter-spacing:-.045em;
+  max-width:780px;
+  margin:24px 0;
+}
+.hero h1 em {
+  font-weight:400;
+  color:#e9d5b3;
+}
+.hero p {
+  max-width:520px;
+  color:#edf0f1;
+  font-size:1rem;
+}
+.hero-actions {
+  display:flex;
+  gap:12px;
+  flex-wrap:wrap;
+  margin-top:28px;
+}
+.hero-controls {
+  position:absolute;
+  z-index:3;
+  bottom:25px;
+  left:50%;
+  transform:translateX(-50%);
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  color:#fff;
+}
+.hero-controls button {
+  background:#09162988;
+  border:1px solid #ffffff77;
+  color:#fff;
+  width:42px;
+  height:42px;
+}
+.dots {
+  display:flex;
+  gap:9px;
+  align-items:center;
+}
+.dot {
+  width:9px!important;
+  height:9px!important;
+  border-radius:50%;
+  background:#ffffff77!important;
+  border:0!important;
+  padding:0;
+}
+.dot.active {
+  background:var(--gold)!important;
+  width:24px!important;
+  border-radius:5px;
+}
+.missing {
+  background:linear-gradient(135deg,#172942,#0a1324);
+}
 
-    @media (max-width: 1110px) {
-      .desktop-nav { gap: 10px; }
-      .desktop-nav > a, .nav-group > button { font-size: .67rem; }
-      .brand-name { font-size: 1.52rem; }
-      .brand-sub { font-size: .47rem; }
-      .header-cta { padding: 10px; }
-    }
-    @media (max-width: 900px) {
-      .desktop-nav { display: none; }
-      .menu-toggle { display: inline-block; }
-      .mobile-nav { position: absolute; top: 100%; left: 0; right: 0; max-height: calc(100dvh - 77px); overflow: auto; padding: 20px 24px 34px; background: var(--navy); border-top: 1px solid rgba(255,255,255,.15); }
-      .mobile-nav.open { display: block; }
-      .mobile-nav a, .mobile-nav summary { display: block; padding: 13px 0; color: #fff; font-size: .91rem; border-bottom: 1px solid rgba(255,255,255,.1); }
-      .mobile-nav details a { padding-left: 18px; font-size: .81rem; color: #d3dcde; }
-      .mobile-nav summary { cursor: pointer; }
-      .hero { min-height: 690px; }
-      .hero-content { min-height: 660px; }
-      .hero-side-label { display: none; }
-      .about-layout { gap: 35px; }
-      .about-panel { padding: 31px; min-height: 350px; }
-      .about-panel::before { inset: 12px; }
-      .alliance-intro { gap: 36px; }
-    }
-    @media (max-width: 720px) {
-      html { scroll-padding-top: 78px; }
-      .container { width: min(100% - 34px, var(--container)); }
-      .section { padding: 68px 0; }
-      .section-head { margin-bottom: 28px; }
-      .microbar .container { justify-content: center; }
-      .microbar-links { display: none; }
-      .header-inner { min-height: 70px; }
-      .brand-name { font-size: 1.54rem; }
-      .hero { min-height: 665px; }
-      .hero-content { min-height: 650px; padding-top: 65px; padding-bottom: 135px; }
-      .hero h1 { font-size: clamp(4.15rem, 12vw, 5.8rem); }
-      .hero-art::before { right: -52%; top: 19%; width: 115vw; }
-      .hero-art::after { right: -6%; bottom: 27%; }
-      .hero-description { font-size: .92rem; }
-      .photo-status { display: none; }
-      .about-layout, .contact-layout, .calendar-layout, .alliance-intro { grid-template-columns: 1fr; }
-      .about-panel { min-height: 290px; }
-      .values-grid, .leadership-grid, .commission-grid { grid-template-columns: 1fr; }
-      .values-grid { margin-top: 33px; }
-      .value-card { padding: 28px; }
-      .content-grid, .gallery-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-      .partner-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-      .team-subhead { margin-top: 48px; }
-      .leader-card .avatar { width: 107px; height: 124px; }
-      .footer-top { flex-direction: column; }
-    }
-    @media (max-width: 475px) {
-      .brand-name { font-size: 1.42rem; }
-      .brand-sub { font-size: .45rem; }
-      .hero-actions .btn { width: 100%; }
-      .hero-actions { max-width: 320px; }
-      .hero-content { min-height: 735px; }
-      .hero-copy { padding-left: 17px; }
-      .hero { min-height: 755px; }
-      .hero-bottom { bottom: 21px; }
-      .content-grid, .gallery-grid, .partner-grid { grid-template-columns: 1fr; }
-      .gallery-tile { aspect-ratio: 16/11; }
-      .leader-card { gap: 15px; padding: 15px; }
-      .leader-card .avatar { width: 94px; height: 116px; }
-      .contact-card { padding: 25px; }
-      .footer-bottom { flex-direction: column; }
-      .calendar-shell { padding: 15px 10px; }
-      .calendar-grid { gap: 1px; }
-      .calendar-grid .day { min-height: 34px; }
-    }
-    @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
-    }
+/* QUIÉNES SOMOS */
+.about-grid {
+  display:grid;
+  grid-template-columns:1.15fr .85fr;
+  gap:68px;
+  align-items:center;
+}
+.about-grid p { color:#556172; }
+.statement {
+  border-top:1px solid var(--border);
+  padding:21px 0;
+}
+.statement h3 {
+  font:600 2rem/1 var(--serif);
+  margin:0 0 8px;
+}
+.statement p { margin:0; }
+.logo-panel {
+  background:var(--navy);
+  padding:55px;
+  display:grid;
+  place-items:center;
+  min-height:410px;
+  border:11px solid #d7c4a4;
+}
+.logo-panel img {
+  width:min(270px,100%);
+  height:260px;
+  object-fit:contain;
+}
+.motto {
+  text-align:center;
+  font:italic 1.45rem var(--serif);
+  color:#eadbbf;
+  margin:23px 0 0;
+}
 
-    /* ACABADO EDITORIAL: LEX SPHERE · identidad institucional */
-    .site-header { box-shadow: 0 10px 25px rgba(5,14,26,.13); }
-    .microbar { letter-spacing: .135em; }
-    .brand-sub { color: #d3c09d; }
-    .eyebrow { font-size: .68rem; letter-spacing: .2em; color: #9e7941; }
-    .section-dark .eyebrow { color: var(--gold-light); }
-    .section-head h2, .team-subhead h3, .value-card h3 { text-wrap: balance; }
-    .section-head p { max-width: 650px; line-height: 1.85; }
-    .section { padding-block: clamp(78px, 8vw, 122px); }
-    .btn { font-size: .73rem; letter-spacing: .07em; font-weight: 800; border-radius: 2px; padding-inline: 25px; }
-    .btn-primary { background: #d7b980; color: #101f36; }
-    .btn-primary:hover { background: #ebd5aa; }
-    .hero { min-height: min(800px, 92vh); }
-    .hero-content { min-height: 715px; }
-    .hero-kicker { font-size: .69rem; letter-spacing: .28em; }
-    .hero h1 { margin-top: 23px; margin-bottom: 22px; }
-    .hero-lema { opacity: .95; }
-    .hero-description { max-width: 475px; }
-    .hero-art::after { opacity: .55; }
-    .gold-rule { width: 72px; height: 1px; }
-    .about-intro { max-width: 600px; }
-    .about-panel { background: #efe8db; }
-    .about-panel::after { content: "LS"; position: absolute; font: 500 12rem/.8 var(--serif); letter-spacing: -.1em; color: rgba(29,48,68,.055); right: 24px; bottom: 32px; pointer-events: none; }
-    .about-panel blockquote { z-index: 1; }
-    .about-panel small { line-height: 1.75; max-width: 290px; }
-    .value-card { border-top: 2px solid var(--gold); padding: 43px; }
-    .value-card h3 { margin: 14px 0; }
-    .leader-card { position: relative; transition: background .25s ease, transform .25s ease; }
-    .leader-card:hover { background: rgba(255,255,255,.065); transform: translateY(-2px); }
-    .leader-card .avatar { height: 172px; width: 137px; border: 1px solid rgba(234,216,182,.3); }
-    .leader-card h3 { margin-bottom: 10px; }
-    .leader-card p { font-size: .71rem; text-transform: uppercase; letter-spacing: .075em; font-weight: 700; line-height: 1.7; }
-    .team-subhead { padding-top: 39px; border-top: 1px solid rgba(234,216,182,.19); }
-    .commission { transition: border-color .25s, background .25s; }
-    .commission:hover { background: #1c314c; }
-    .commission summary { padding-block: 25px; }
-    .commission-director { margin-top: 9px; }
-    .gallery-tile img { object-position: center; }
-    .gallery-tile span { padding: 54px 25px 22px; }
-    .contact-card { border-top: 3px solid var(--gold); }
-    .footer-name { line-height: 1; }
-    .site-footer { padding-top: 56px; }
-    .editorial-note { grid-column: 1 / -1; margin: -8px 0 0; font-size: .74rem; color: #7d8390; letter-spacing: .01em; }
-    .hero-progress { position: absolute; bottom: 0; left: 0; height: 2px; background: #d7b980; opacity: .9; z-index: 7; width: 100%; transform-origin: left; transform: scaleX(0); }
-    .hero-progress.running { animation: heroProgress 6.5s linear forwards; }
-    @keyframes heroProgress { from { transform: scaleX(0); } to { transform: scaleX(1); } }
-    @media (max-width: 900px) {
-      .hero { min-height: 700px; }
-      .hero-content { min-height: 675px; }
-      .leader-card .avatar { width: 125px; height: 153px; }
-    }
-    @media (max-width: 720px) {
-      .section { padding-block: 74px; }
-      .hero-content { min-height: 650px; }
-      .hero { min-height: 665px; }
-      .hero h1 { font-size: clamp(4rem, 11vw, 5.25rem); }
-      .hero-copy { padding-left: 16px; }
-      .leader-card .avatar { width: 119px; height: 138px; }
-      .value-card { padding: 29px; }
-      .about-panel::after { font-size: 9rem; }
-    }
-    @media (max-width: 475px) {
-      .hero { min-height: 765px; }
-      .hero-content { min-height: 745px; }
-      .hero h1 { font-size: clamp(3.62rem, 13.5vw, 4.6rem); }
-      .hero-copy { max-width: 100%; }
-      .hero-description { font-size: .89rem; }
-      .leader-card .avatar { width: 98px; height: 120px; }
-      .leader-card h3 { font-size: 1.32rem; }
-      .brand-name { font-size: 1.42rem; }
-      .about-panel blockquote { font-size: 2.2rem; }
-    }
-    @media (prefers-reduced-motion: reduce) { .hero-progress.running { animation: none; } }
-  </style>
+/* EQUIPO DIRECTIVO */
+.leader-grid {
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:22px;
+  margin-bottom:70px;
+}
+.leader {
+  background:#fff;
+  box-shadow:0 15px 46px #15263b0b;
+  display:grid;
+  grid-template-columns:46% 54%;
+  min-height:310px;
+}
+.portrait {
+  min-height:300px;
+  background:#e9e0d1;
+  overflow:hidden;
+}
+.portrait img {
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:center 16%;
+}
+.leader-text {
+  padding:30px 25px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+}
+.leader-text small {
+  color:#987848;
+  text-transform:uppercase;
+  letter-spacing:.14em;
+  font-size:.66rem;
+  font-weight:800;
+}
+.leader h3 {
+  font:600 2.55rem/.95 var(--serif);
+  margin:17px 0;
+}
+.leader p {
+  color:var(--muted);
+  font-size:.86rem;
+  margin:0;
+}
+
+/* BIBLIOTECA DE COMISIONES */
+.subheading {
+  font:500 clamp(2.1rem,4vw,3.1rem)/1.08 var(--serif);
+  margin:0 0 14px;
+}
+.search {
+  width:100%;
+  border:1px solid #d5d0c7;
+  padding:15px 17px;
+  background:#fff;
+  margin:15px 0 22px;
+  outline-color:var(--gold);
+}
+.commission-grid {
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:14px;
+}
+.commission {
+  background:#fff;
+  border:1px solid var(--border);
+}
+.commission summary {
+  cursor:pointer;
+  list-style:none;
+  padding:23px 52px 23px 24px;
+  position:relative;
+}
+.commission summary::-webkit-details-marker { display:none; }
+.commission summary:after {
+  content:'+';
+  position:absolute;
+  right:22px;
+  top:20px;
+  font-size:1.35rem;
+  color:#a78652;
+}
+.commission[open] summary:after { content:'−'; }
+.commission strong {
+  display:block;
+  font:600 1.55rem/1.08 var(--serif);
+}
+.commission small {
+  display:block;
+  margin-top:9px;
+  color:var(--muted);
+  font-size:.73rem;
+}
+.commission-body {
+  border-top:1px solid var(--border);
+  padding:18px 24px 23px;
+  font-size:.82rem;
+  color:#4d5a6a;
+}
+.commission-body p:last-child { margin-bottom:0; }
+.placeholder {
+  color:#8d8a85;
+  font-style:italic;
+}
+
+/* ACTIVIDADES Y PUBLICACIONES */
+.cards {
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:20px;
+}
+.card {
+  border:1px solid var(--border);
+  background:#fff;
+  padding:29px;
+  min-height:170px;
+}
+.card h3 {
+  font:600 2rem/1.05 var(--serif);
+  margin:10px 0;
+}
+.card p {
+  font-size:.87rem;
+  color:var(--muted);
+}
+.card .date {
+  font-size:.69rem;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  color:#987848;
+}
+.empty {
+  border:1px dashed #d3c8b7;
+  padding:27px;
+  color:var(--muted);
+  background:#fffcf8;
+}
+.empty h3 {
+  font:600 1.8rem var(--serif);
+  color:var(--ink);
+  margin-bottom:9px;
+}
+.empty p {
+  margin:0;
+  font-size:.88rem;
+}
+
+/* CALENDARIO */
+.calendar-layout {
+  display:grid;
+  grid-template-columns:minmax(0,1fr) minmax(250px,.8fr);
+  gap:30px;
+  align-items:start;
+  margin-top:38px;
+}
+.calendar {
+  padding:26px;
+  background:#fff;
+  border:1px solid var(--border);
+}
+.cal-head {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  margin-bottom:18px;
+}
+.cal-head h3 {
+  margin:0;
+  font:600 2rem var(--serif);
+}
+.cal-head button {
+  border:1px solid var(--border);
+  background:#fff;
+  padding:4px 12px;
+}
+.days {
+  display:grid;
+  grid-template-columns:repeat(7,1fr);
+  gap:5px;
+  text-align:center;
+}
+.days span {
+  padding:8px 0;
+  font-size:.75rem;
+}
+.days .weekday {
+  font-weight:800;
+  color:#9b7d4e;
+}
+.days .today {
+  background:var(--navy);
+  color:#fff;
+}
+.days .has-event {
+  outline:2px solid var(--gold);
+  outline-offset:-3px;
+}
+.agenda {
+  padding:25px;
+  border:1px solid var(--border);
+  background:#fff;
+  min-height:200px;
+}
+.agenda p {
+  color:var(--muted);
+  font-size:.85rem;
+}
+.agenda-item {
+  padding:13px 0;
+  border-bottom:1px solid var(--border);
+}
+.agenda-item b { display:block; }
+.agenda-item small { color:#977848; }
+.filter-row {
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+  margin-bottom:20px;
+}
+.filter-row button {
+  background:transparent;
+  border:1px solid #cabd9e;
+  padding:8px 15px;
+  color:var(--ink);
+  font-size:.75rem;
+}
+.filter-row button.active {
+  background:var(--navy);
+  color:#fff;
+}
+
+/* GALERÍA */
+.gallery {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:20px;
+}
+.gallery-item {
+  padding:0;
+  text-align:left;
+  border:0;
+  background:var(--navy);
+  color:white;
+  overflow:hidden;
+}
+.gallery-item img {
+  width:100%;
+  aspect-ratio:1.45;
+  object-fit:cover;
+  transition:transform .4s;
+}
+.gallery-item:hover img { transform:scale(1.035); }
+.gallery-item span {
+  display:block;
+  padding:15px 18px;
+  background:var(--navy);
+  font-size:.83rem;
+}
+
+/* CONTACTO Y PIE DE PÁGINA */
+.contact-grid {
+  display:grid;
+  grid-template-columns:1.2fr .8fr;
+  gap:35px;
+  align-items:center;
+}
+.socials {
+  display:flex;
+  flex-wrap:wrap;
+  gap:12px;
+}
+.contact-note {
+  font-size:.8rem;
+  color:#aab8c9;
+}
+.footer {
+  background:#091426;
+  color:#c8d2df;
+  padding:30px 0;
+  font-size:.74rem;
+}
+.footer .wrap {
+  display:flex;
+  justify-content:space-between;
+  gap:15px;
+  flex-wrap:wrap;
+}
+
+/* VISOR DE FOTOGRAFÍAS */
+.modal {
+  position:fixed;
+  inset:0;
+  background:#06101def;
+  z-index:100;
+  display:grid;
+  place-items:center;
+  padding:45px 20px;
+}
+.modal[hidden] { display:none; }
+.modal img {
+  max-height:80vh;
+  max-width:95vw;
+  object-fit:contain;
+}
+.modal button {
+  position:absolute;
+  top:14px;
+  right:20px;
+  background:#ffffff22;
+  color:#fff;
+  border:1px solid #fff;
+  padding:4px 14px;
+  font-size:1.5rem;
+}
+.modal p {
+  text-align:center;
+  color:#f0e1c9;
+  font-size:.8rem;
+  margin:10px 0;
+}
+
+/* ADAPTACIÓN A CELULARES */
+@media(max-width:1040px) {
+  .nav { gap:9px; }
+  .nav a { font-size:.67rem; }
+  .brand b { font-size:1.5rem; }
+}
+@media(max-width:900px) {
+  .hamburger { display:block; }
+  .nav {
+    display:none;
+    position:absolute;
+    top:100%;
+    left:0;
+    right:0;
+    background:var(--navy);
+    padding:15px 22px 24px;
+    flex-direction:column;
+    align-items:stretch;
+    box-shadow:0 20px 24px #0005;
+  }
+  .nav.open { display:flex; }
+  .nav a { font-size:.9rem; padding:9px 0; }
+  .about-grid { gap:28px; }
+  .leader-grid { gap:14px; }
+  .leader { grid-template-columns:1fr; }
+  .portrait { height:310px; }
+  .leader-text { padding:23px; }
+}
+@media(max-width:650px) {
+  .section { padding:65px 0; }
+  .topline { font-size:.56rem; }
+  .hero { min-height:570px; }
+  .hero-content { padding:90px 0 100px; }
+  .hero h1 { font-size:4.2rem; }
+  .hero-shade {
+    background:linear-gradient(90deg,#081120e8,#08112075);
+  }
+  .about-grid,.leader-grid,.commission-grid,
+  .calendar-layout,.gallery,.contact-grid {
+    grid-template-columns:1fr;
+  }
+  .logo-panel { min-height:320px; }
+  .cards { grid-template-columns:1fr; }
+  .leader {
+    grid-template-columns:43% 57%;
+    min-height:210px;
+  }
+  .portrait {
+    height:auto;
+    min-height:235px;
+  }
+  .leader h3 { font-size:2rem; }
+  .leader-text { padding:15px; }
+  .brand img { width:45px; height:45px; }
+  .brand b { font-size:1.55rem; }
+  .brand small { font-size:.49rem; }
+  .hero-controls { bottom:18px; }
+  .about-grid { gap:40px; }
+}
+@media(prefers-reduced-motion:reduce) {
+  html { scroll-behavior:auto; }
+  *,*:before,*:after {
+    animation:none!important;
+    transition:none!important;
+  }
+}
+</style>
 </head>
-<body>
-  <a class="skip-link" href="#contenido">Ir al contenido principal</a>
 
-  <div class="microbar">
-    <div class="container">
-      <span>ASOCIACIÓN ESTUDIANTIL DE DERECHO · UNIVERSIDAD CIENTÍFICA DEL SUR</span>
-      <div class="microbar-links"><a href="https://www.instagram.com/lex_sphere/" target="_blank" rel="noopener noreferrer">Instagram ↗</a><a href="https://www.linkedin.com/company/lex-sphere/posts/" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a></div>
+<body>
+
+<div class="topline">
+  ASOCIACIÓN ESTUDIANTIL DE DERECHO · UNIVERSIDAD CIENTÍFICA DEL SUR
+</div>
+
+<header class="header">
+  <div class="wrap">
+    <a class="brand" href="#inicio">
+      <img data-photo="logo" alt="Logotipo oficial de LEX SPHERE">
+      <span>
+        <b>LEX SPHERE</b>
+        <small>Asociación estudiantil</small>
+      </span>
+    </a>
+
+    <button class="hamburger" id="menuBtn"
+      aria-label="Abrir menú" aria-expanded="false">☰</button>
+
+    <nav class="nav" id="nav">
+      <a href="#inicio">Inicio</a>
+      <a href="#nosotros">Quiénes somos</a>
+      <a href="#equipo">Nuestro equipo</a>
+      <a href="#actividades">Actividades</a>
+      <a href="#publicaciones">Publicaciones</a>
+      <a href="#alianzas">Alianzas</a>
+      <a href="#galeria">Galería</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+<!-- PORTADA -->
+<section class="hero" id="inicio">
+  <div class="slides">
+    <div class="slide active">
+      <img data-photo="asociacion"
+        alt="Fotografía de integrantes de LEX SPHERE">
+    </div>
+    <div class="slide">
+      <img data-photo="directores"
+        alt="Fotografía del equipo directivo de LEX SPHERE">
+    </div>
+    <div class="hero-shade"></div>
+  </div>
+
+  <div class="wrap hero-content">
+    <span class="eyebrow">Investigación · Comunidad · Derecho</span>
+    <h1>LEX<br><em>SPHERE.</em></h1>
+    <p>Un espacio de encuentro, formación y colaboración para estudiantes interesados en el pensamiento jurídico y la vida académica.</p>
+    <p style="font-family:var(--serif);font-size:1.55rem;color:#ecd9b8">
+      Labor omnia vincit, audentes fortuna iuvat.
+    </p>
+    <div class="hero-actions">
+      <a class="btn" href="#nosotros">Conoce la asociación</a>
+      <a class="btn ghost" href="#equipo">Nuestro equipo</a>
     </div>
   </div>
 
-  <header class="site-header" id="cabecera">
-    <div class="container header-inner">
-      <a href="#inicio" class="brand" aria-label="LEX SPHERE — ir al inicio">
-        <img id="brandLogo" class="brand-logo" alt="Logotipo oficial de LEX SPHERE" hidden>
-        <span><strong class="brand-name">LEX SPHERE</strong><span class="brand-sub">Asociación estudiantil de Derecho</span></span>
-      </a>
-      <nav class="desktop-nav" aria-label="Navegación principal">
-        <a href="#inicio">Inicio</a>
-        <div class="nav-group"><button type="button" aria-haspopup="true">Quiénes somos <span class="nav-chevron">⌄</span></button><div class="nav-dropdown"><a href="#quienes-somos">Nuestra identidad</a><a href="#historia">Nuestra historia</a><a href="#mision-vision">Misión y visión</a></div></div>
-        <div class="nav-group"><button type="button" aria-haspopup="true">Nuestro equipo <span class="nav-chevron">⌄</span></button><div class="nav-dropdown"><a href="#equipo">Dirección general</a><a href="#comisiones">Biblioteca de comisiones</a></div></div>
-        <div class="nav-group"><button type="button" aria-haspopup="true">Actividades <span class="nav-chevron">⌄</span></button><div class="nav-dropdown"><a href="#actividades">Eventos</a><a href="#noticias">Noticias</a><a href="#agenda">Calendario</a></div></div>
-        <a href="#publicaciones">Publicaciones</a><a href="#alianzas">Alianzas</a><a href="#galeria">Galería</a>
-        <a href="#contacto" class="btn btn-primary header-cta">Contacto <span class="arrow">↗</span></a>
-      </nav>
-      <button id="menuToggle" class="menu-toggle" type="button" aria-controls="mobileNav" aria-expanded="false" aria-label="Abrir menú">☰</button>
+  <div class="wrap hero-controls">
+    <div class="dots">
+      <button class="dot active" data-dot="0" aria-label="Foto 1"></button>
+      <button class="dot" data-dot="1" aria-label="Foto 2"></button>
     </div>
-    <nav class="mobile-nav" id="mobileNav" aria-label="Navegación móvil">
-      <a href="#inicio">Inicio</a>
-      <details><summary>Quiénes somos</summary><a href="#quienes-somos">Nuestra identidad</a><a href="#historia">Nuestra historia</a><a href="#mision-vision">Misión y visión</a></details>
-      <details><summary>Nuestro equipo</summary><a href="#equipo">Dirección general</a><a href="#comisiones">Biblioteca de comisiones</a></details>
-      <details><summary>Actividades</summary><a href="#actividades">Eventos</a><a href="#noticias">Noticias</a><a href="#agenda">Calendario</a></details>
-      <a href="#publicaciones">Publicaciones</a><a href="#alianzas">Alianzas</a><a href="#galeria">Galería</a><a href="#contacto">Contacto</a>
-    </nav>
-  </header>
+    <div>
+      <button id="prev" aria-label="Foto anterior">‹</button>
+      <button id="next" aria-label="Foto siguiente">›</button>
+    </div>
+  </div>
+</section>
 
-  <main id="contenido">
-    <section class="hero" id="inicio" aria-label="Portada de LEX SPHERE">
-      <div id="heroSlides" class="hero-slides"></div><div class="hero-progress" id="heroProgress" aria-hidden="true"></div>
-      <div class="container hero-content">
-        <div class="hero-copy">
-          <span class="hero-kicker" id="heroKicker">Comunidad jurídica universitaria</span>
-          <h1 id="heroTitle">Ideas que construyen <em>comunidad jurídica.</em></h1>
-          <div class="hero-lema">Labor omnia vincit, audentes fortuna iuvat.</div>
-          <p class="hero-description" id="heroDescription">Investigación, diálogo académico y colaboración entre estudiantes de Derecho.</p>
-          <div class="hero-actions"><a href="#quienes-somos" class="btn btn-primary">Conoce LEX SPHERE <span class="arrow">↗</span></a><a href="#equipo" class="btn btn-outline">Nuestro equipo <span class="arrow">→</span></a></div>
+<!-- QUIÉNES SOMOS -->
+<section class="section white" id="nosotros">
+  <div class="wrap about-grid">
+    <div>
+      <span class="eyebrow">Nuestra identidad</span>
+      <h2 class="section-title">Quiénes <em>somos</em></h2>
+
+      <p>LEX SPHERE es una asociación estudiantil vinculada a la comunidad de Derecho de la Universidad Científica del Sur. Promueve iniciativas de formación, investigación y participación académica a través del trabajo de sus integrantes y comisiones.</p>
+
+      <div class="statement">
+        <h3>Misión</h3>
+        <p>Promover la cultura jurídica y el pensamiento crítico mediante la investigación, la difusión del conocimiento y la organización de espacios académicos multidisciplinarios. Fomentamos la colaboración entre estudiantes, profesionales e instituciones vinculadas al Derecho.</p>
+      </div>
+
+      <div class="statement">
+        <h3>Visión</h3>
+        <p>Consolidarnos como una asociación estudiantil de referencia en la comunidad jurídica peruana, reconocida por sus iniciativas académicas, su producción intelectual y sus vínculos de colaboración institucional.</p>
+      </div>
+      <small style="color:#77818d">
+        Misión y visión: redacción propuesta, pendiente de aprobación institucional.
+      </small>
+    </div>
+
+    <div class="logo-panel">
+      <div>
+        <img data-photo="logo" alt="Emblema oficial de LEX SPHERE">
+        <p class="motto">Labor omnia vincit,<br>audentes fortuna iuvat.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EQUIPO DIRECTIVO -->
+<section class="section" id="equipo">
+  <div class="wrap">
+    <span class="eyebrow">Personas y organización</span>
+    <h2 class="section-title">Nuestro <em>equipo</em></h2>
+    <p class="section-intro">Conoce a quienes coordinan la asociación y explora el directorio de cada comisión. La relación de integrantes se ampliará a medida que se confirme su información.</p>
+
+    <div class="leader-grid">
+      <article class="leader">
+        <div class="portrait">
+          <img data-photo="jimena" alt="Fotografía de Jimena Rivas P.">
         </div>
+        <div class="leader-text">
+          <small>Dirección General</small>
+          <h3>Jimena<br>Rivas P.</h3>
+          <p>Directora General</p>
+        </div>
+      </article>
+
+      <article class="leader">
+        <div class="portrait">
+          <img data-photo="betsy" alt="Fotografía de Betsy Babilonia">
+        </div>
+        <div class="leader-text">
+          <small>Subdirección</small>
+          <h3>Betsy<br>Babilonia</h3>
+          <p>Subdirectora</p>
+        </div>
+      </article>
+    </div>
+
+    <span class="eyebrow">Directorio institucional</span>
+    <h3 class="subheading">Biblioteca de comisiones</h3>
+    <p class="section-intro">Selecciona una comisión para consultar su dirección y sus funciones.</p>
+
+    <input class="search" id="search" type="search"
+      placeholder="Buscar comisión o director(a)..."
+      aria-label="Buscar comisión o director">
+
+    <div class="commission-grid" id="commissions"></div>
+  </div>
+</section>
+
+<!-- ACTIVIDADES -->
+<section class="section white" id="actividades">
+  <div class="wrap">
+    <span class="eyebrow">Vida académica</span>
+    <h2 class="section-title">Actividades y <em>actualidad</em></h2>
+    <p class="section-intro">Eventos, congresos, noticias y comunicados. Solo se publicarán actividades e información institucional confirmadas.</p>
+
+    <h3 class="subheading">Próximos eventos</h3>
+    <div class="cards" id="events"></div>
+
+    <h3 class="subheading" style="margin-top:40px">
+      Noticias y comunicados
+    </h3>
+    <div class="cards" id="news"></div>
+
+    <div class="calendar-layout">
+      <div class="calendar">
+        <div class="cal-head">
+          <button id="backMonth" aria-label="Mes anterior">‹</button>
+          <h3 id="monthTitle"></h3>
+          <button id="forwardMonth" aria-label="Mes siguiente">›</button>
+        </div>
+        <div class="days" id="calendarDays"></div>
       </div>
-      <span class="hero-side-label" aria-hidden="true">LEX SPHERE · DERECHO</span>
-      <div class="hero-bottom"><div class="container"><div class="hero-controls"><button id="slidePrev" class="hero-control" type="button" aria-label="Foto anterior">←</button><button id="slideNext" class="hero-control" type="button" aria-label="Foto siguiente">→</button><div id="slideDots" class="hero-dots" aria-label="Seleccionar diapositiva"></div></div><span class="photo-status" id="heroPhotoStatus">Fotografías oficiales de LEX SPHERE</span></div></div>
-    </section>
 
-    <section class="section section-light" id="quienes-somos">
-      <div class="container about-layout">
-        <div class="reveal"><span class="eyebrow">Nuestra identidad</span><h2 class="serif" style="font-size:clamp(2.7rem, 4.7vw, 4.35rem);line-height:1.03;margin:15px 0 25px;font-weight:500">Quiénes somos</h2><span class="gold-rule"></span><p class="about-intro">Somos LEX SPHERE, una asociación estudiantil de Derecho de la Universidad Científica del Sur.</p><p class="about-copy">Promovemos el intercambio de ideas, la investigación jurídica y la participación de estudiantes en iniciativas académicas. Buscamos construir una comunidad de aprendizaje y colaboración vinculada al desarrollo del Derecho.</p><div id="historia" style="border-left:2px solid var(--gold);padding-left:18px;margin:25px 0"><strong style="font:400 1.14rem var(--serif)">Nuestra historia</strong><p class="about-copy" style="margin-top:8px">Este espacio reunirá los hitos y las fechas de la trayectoria institucional que la asociación confirme para su publicación.</p></div><a class="btn btn-line" href="#mision-vision">Conoce nuestros propósitos <span class="arrow">↗</span></a></div>
-        <div class="about-panel reveal"><blockquote>«Labor omnia vincit, audentes fortuna iuvat.»<small>El trabajo todo lo vence; la fortuna favorece a los audaces.</small></blockquote></div>
-      </div>
-      <div class="container values-grid" id="mision-vision"><article class="value-card reveal"><span class="value-number">01 / MISIÓN</span><h3>Misión</h3><p id="missionText"></p></article><article class="value-card reveal"><span class="value-number">02 / VISIÓN</span><h3>Visión</h3><p id="visionText"></p></article><p class="editorial-note">Misión y visión: redacción propuesta, pendiente de aprobación por la asociación.</p></div>
-    </section>
+      <aside class="agenda">
+        <span class="eyebrow">Agenda institucional</span>
+        <h3 class="subheading">Calendario</h3>
+        <div id="agendaItems"></div>
+      </aside>
+    </div>
+  </div>
+</section>
 
-    <section class="section section-dark" id="equipo">
-      <div class="container"><div class="section-head reveal"><span class="eyebrow">Las personas detrás de la asociación</span><h2>Nuestro equipo</h2><p>Conoce la dirección de LEX SPHERE y explora las comisiones que integran su estructura organizativa.</p></div>
-        <div id="leadershipGrid" class="leadership-grid"></div>
-        <div id="comisiones" class="team-subhead"><div><span class="eyebrow">Directorio institucional</span><h3>Biblioteca de comisiones</h3></div><input id="teamSearch" class="team-search" type="search" placeholder="Buscar comisión o integrante..." aria-label="Buscar comisiones e integrantes"></div>
-        <div id="commissionGrid" class="commission-grid"></div>
-      </div>
-    </section>
+<!-- PUBLICACIONES -->
+<section class="section" id="publicaciones">
+  <div class="wrap">
+    <span class="eyebrow">Producción académica</span>
+    <h2 class="section-title">Biblioteca <em>jurídica</em></h2>
+    <p class="section-intro">Investigaciones, análisis y artículos elaborados por integrantes de la asociación, una vez autorizados para su publicación.</p>
+    <div class="filter-row" id="filters"></div>
+    <div class="cards" id="articles"></div>
+  </div>
+</section>
 
-    <section class="section" id="actividades">
-      <div class="container"><div class="section-head reveal"><span class="eyebrow">Vida académica</span><h2>Actividades y actualidad</h2><p>Una mirada a nuestros espacios de encuentro, iniciativas y próximas actividades.</p></div>
-        <div class="blocks-head"><div><h3>Eventos y actividades</h3><p>Próximos encuentros de la asociación</p></div></div>
-        <div id="eventsGrid" class="content-grid"></div>
-        <hr class="activity-divider">
-        <div class="blocks-head" id="noticias"><div><h3>Noticias y comunicados</h3><p>Información publicada por LEX SPHERE</p></div></div>
-        <div id="newsGrid" class="content-grid"></div>
-        <hr class="activity-divider">
-        <div class="blocks-head" id="agenda"><div><h3>Calendario institucional</h3><p>Consulta las actividades programadas por mes</p></div></div>
-        <div class="calendar-layout"><div class="calendar-shell"><div class="calendar-head"><h4 id="calendarTitle"></h4><div class="calendar-actions"><button id="calPrev" type="button" aria-label="Mes anterior">←</button><button id="calToday" type="button" aria-label="Ir al mes actual" title="Mes actual">●</button><button id="calNext" type="button" aria-label="Mes siguiente">→</button></div></div><div id="calendarGrid" class="calendar-grid" aria-label="Calendario de eventos"></div></div><div class="calendar-agenda"><span class="eyebrow">Agenda del mes</span><h4>Actividades programadas</h4><div id="agendaItems"></div></div></div>
-      </div>
-    </section>
+<!-- ALIANZAS -->
+<section class="section white" id="alianzas">
+  <div class="wrap">
+    <span class="eyebrow">Colaboración institucional</span>
+    <h2 class="section-title">Convenios y <em>alianzas</em></h2>
+    <p class="section-intro">Espacio destinado a instituciones y organizaciones con las que LEX SPHERE haya formalizado colaboraciones.</p>
+    <div class="cards" id="partners"></div>
+  </div>
+</section>
 
-    <section class="section section-light" id="publicaciones"><div class="container"><div class="section-head reveal"><span class="eyebrow">Producción intelectual</span><h2>Publicaciones jurídicas</h2><p>Un espacio para artículos, análisis y trabajos académicos elaborados por nuestra comunidad.</p></div><div id="publicationFilters" class="filter-row" aria-label="Filtrar publicaciones"></div><div id="publicationsGrid" class="content-grid"></div></div></section>
+<!-- GALERÍA -->
+<section class="section" id="galeria">
+  <div class="wrap">
+    <span class="eyebrow">Comunidad LEX SPHERE</span>
+    <h2 class="section-title">Galería <em>fotográfica</em></h2>
+    <p class="section-intro">Imágenes institucionales de la asociación y su equipo directivo.</p>
 
-    <section class="section section-dark" id="alianzas"><div class="container"><div class="alliance-intro"><div class="section-head reveal"><span class="eyebrow">Vínculos institucionales</span><h2>Alianzas y colaboración</h2><p>Buscamos impulsar iniciativas académicas conjuntas y espacios de intercambio con organizaciones vinculadas al Derecho.</p></div><p class="alliance-note reveal">Este directorio mostrará únicamente convenios y colaboraciones confirmadas. Las conversaciones o propuestas que todavía estén en evaluación no serán presentadas como alianzas vigentes.</p></div><div id="partnersGrid" class="partner-grid"></div></div></section>
+    <div class="gallery">
+      <button type="button" class="gallery-item" data-open="asociacion">
+        <img data-photo="asociacion" alt="Integrantes de LEX SPHERE">
+        <span>Fotografía de la asociación · Ver imagen ↗</span>
+      </button>
+      <button type="button" class="gallery-item" data-open="directores">
+        <img data-photo="directores" alt="Equipo directivo de LEX SPHERE">
+        <span>Fotografía de directores · Ver imagen ↗</span>
+      </button>
+    </div>
+  </div>
+</section>
 
-    <section class="section" id="galeria"><div class="container"><div class="section-head reveal"><span class="eyebrow">Momentos de LEX SPHERE</span><h2>Galería fotográfica</h2><p>Actividades y experiencias de la asociación, reunidas en un solo espacio visual. Haz clic en una fotografía para ampliarla.</p></div><div id="galleryGrid" class="gallery-grid"></div></div></section>
+<!-- CONTACTO -->
+<section class="section dark" id="contacto">
+  <div class="wrap contact-grid">
+    <div>
+      <span class="eyebrow">Conectemos</span>
+      <h2 class="section-title">Mantengamos el <em>contacto.</em></h2>
+      <p class="section-intro">Síguenos para conocer las próximas actividades, publicaciones y novedades de LEX SPHERE.</p>
+      <p class="contact-note">El correo institucional se incorporará cuando esté disponible.</p>
+    </div>
+    <div class="socials">
+      <a class="btn"
+        href="https://www.instagram.com/lex_sphere/"
+        target="_blank" rel="noopener noreferrer">Instagram ↗</a>
+      <a class="btn ghost"
+        href="https://www.linkedin.com/company/lex-sphere/posts/"
+        target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
+    </div>
+  </div>
+</section>
 
-    <section class="section section-light" id="contacto"><div class="container contact-layout"><div class="section-head reveal"><span class="eyebrow">Conversemos</span><h2>Contacto institucional</h2><p>Conecta con LEX SPHERE para conocer nuestras actividades, seguir las novedades de la asociación o proponer colaboraciones.</p><span class="gold-rule"></span><p>Actualmente puedes encontrarnos en nuestras redes sociales oficiales.</p></div><div class="contact-card reveal"><div class="contact-item"><small>Instagram</small><a href="https://www.instagram.com/lex_sphere/" target="_blank" rel="noopener noreferrer">@lex_sphere ↗</a><p>Novedades, convocatorias y difusión de actividades.</p></div><div class="contact-item"><small>LinkedIn</small><a href="https://www.linkedin.com/company/lex-sphere/posts/" target="_blank" rel="noopener noreferrer">LEX SPHERE ↗</a><p>Publicaciones y comunicación institucional.</p></div><div class="contact-item"><small>Correo institucional</small><p>Se añadirá cuando la asociación cuente con uno.</p></div></div></div></section>
-  </main>
+</main>
 
-  <footer class="site-footer"><div class="container"><div class="footer-top"><div><div style="display:flex;align-items:center;gap:12px"><img src="assets/logo-lex-sphere.png" alt="Logotipo de LEX SPHERE" width="55" height="55" style="border-radius:50%;object-fit:contain"><div class="footer-name">LEX SPHERE</div></div><p>Labor omnia vincit, audentes fortuna iuvat.</p></div><div class="footer-links"><a href="#quienes-somos">Quiénes somos</a><a href="#equipo">Equipo</a><a href="#actividades">Actividades</a><a href="#contacto">Contacto</a></div></div><div class="footer-bottom"><span>© <span id="currentYear"></span> LEX SPHERE. Asociación estudiantil de Derecho.</span><span>Universidad Científica del Sur · Perú</span></div></div></footer>
+<footer class="footer">
+  <div class="wrap">
+    <span>© <span id="year"></span> LEX SPHERE · Universidad Científica del Sur</span>
+    <span>Labor omnia vincit, audentes fortuna iuvat.</span>
+  </div>
+</footer>
 
-  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Fotografía ampliada" hidden><button class="lightbox-close" id="lightboxClose" type="button" aria-label="Cerrar fotografía">×</button><div class="lightbox-wrap"><img id="lightboxImage" alt=""><p class="lightbox-caption" id="lightboxCaption"></p></div></div>
+<div class="modal" id="modal" hidden role="dialog" aria-modal="true"
+  aria-label="Fotografía ampliada">
+  <button id="closeModal" aria-label="Cerrar fotografía">×</button>
+  <div>
+    <img id="modalImage" alt="">
+    <p id="modalCaption"></p>
+  </div>
+</div>
 
-  <script>
-  "use strict";
-  /* ================================================================
-   * EDITA TODO AQUÍ. Este archivo es autosuficiente para GitHub Pages.
-   * Si colocas imágenes junto al HTML en una carpeta "assets":
-   *   logo:  "assets/logo-lex-sphere.png"
-   *   fotos: "assets/portada-1.jpg", etc.
-   * Las fotografías y el logotipo oficiales están en la carpeta assets.
-   * Para publicar actividades/noticias, agrega objetos en sus arrays.
-   * No se han inventado eventos, fotografías, convenios ni integrantes.
-   * ================================================================ */
-  const siteData = {
-    identity: {
-      logo: "assets/logo-lex-sphere.png", // Logotipo oficial aportado por la asociación
-      // Misión y visión: textos propuestos, pendientes de aprobación institucional.
-      mission: "Promover la cultura jurídica y el pensamiento crítico mediante la investigación, la difusión del conocimiento y la organización de espacios académicos multidisciplinarios. Buscamos fortalecer la formación de los estudiantes de Derecho, fomentar su participación en iniciativas institucionales y generar vínculos de colaboración con profesionales, organizaciones y entidades vinculadas al ámbito jurídico.",
-      vision: "Consolidarnos como una asociación estudiantil de referencia en la comunidad jurídica peruana, reconocida por la calidad de sus iniciativas académicas, su producción intelectual y su capacidad para establecer relaciones institucionales que contribuyan al desarrollo profesional de sus integrantes."
-    },
-    // Fotografías oficiales aportadas por LEX SPHERE (carrusel automático).
-    heroSlides: [
-      { kicker: "Nuestra comunidad", title: "El Derecho se construye <em>en comunidad.</em>", description: "Conoce a las personas que integran LEX SPHERE y comparten el interés por la formación y la investigación jurídica.", image: "assets/asociacion.jpg", alt: "Fotografía grupal de integrantes de LEX SPHERE" },
-      { kicker: "Directiva institucional", title: "Compromiso, ideas <em>y trabajo colectivo.</em>", description: "Una asociación estudiantil que impulsa iniciativas académicas a través del trabajo de su equipo directivo.", image: "assets/directores.jpg", alt: "Fotografía grupal de los directores de LEX SPHERE" }
-    ],
-    leadership: [
-      { name: "Jimena Rivas P.", role: "Directora General", photo: "assets/jimena-rivas.jpg" },
-      { name: "Betsy Babilonia", role: "Subdirectora", photo: "assets/betsy-babilonia.jpg" }
-    ],
-    commissions: [
-      { name: "Relaciones Internacionales", director: "Sasha Salizar", directorRole: "Directora", description: "Área de vinculación y coordinación con entidades y organizaciones académicas externas.", photo: "", members: [] },
-      { name: "Eventos", director: "Fernando Tapia", directorRole: "Director", description: "Área encargada de la organización y coordinación de actividades de la asociación.", photo: "", members: [] },
-      { name: "Podcast", director: "Lukas Mieses", directorRole: "Director", description: "Área dedicada a la creación y coordinación de contenidos en formato podcast.", photo: "", members: [] },
-      { name: "Contenido Legal", director: "Marcos Mamani", directorRole: "Director", description: "Área dedicada a la preparación y difusión de contenido jurídico.", photo: "", members: [] },
-      { name: "Revisión y Control Académico", director: "Damaris Choque", directorRole: "Directora", description: "Área orientada a la revisión de materiales y al seguimiento de criterios académicos.", photo: "", members: [] },
-      { name: "Asuntos Políticos", director: "Flordeliz Obregón", directorRole: "Directora", description: "Área vinculada al análisis y tratamiento académico de asuntos políticos.", photo: "", members: [] },
-      { name: "Difusión y Alcance Digital", director: "Dayana", directorRole: "Directora", description: "Área dedicada a la comunicación y alcance de las iniciativas digitales.", photo: "", members: [] },
-      { name: "Gestión Institucional", director: "Milagros", directorRole: "Directora", description: "Área de apoyo a la gestión y coordinación institucional de la asociación.", photo: "", members: [] },
-      { name: "Producción Audiovisual y Diseño", director: "Gianira Echarri", directorRole: "Directora", description: "Área dedicada a la producción de piezas audiovisuales y materiales de diseño.", photo: "", members: [] }
-    ],
-    /* FORMATO PARA AÑADIR CONTENIDO REAL (no se muestra lo comentado):
-       events: [{ title: "Título oficial", date: "2026-11-15", type: "Conversatorio", description: "Descripción comprobada", url: "https://..." }],
-       news: [{ title: "Comunicado oficial", date: "2026-11-16", summary: "Resumen", url: "https://..." }],
-       articles: [{ title: "Título", author: "Autor", date: "2026-11-17", category: "Análisis", summary: "Resumen", url: "https://..." }],
-       partners: [{ name: "Institución con convenio confirmado", logo: "assets/aliado.png", url: "https://..." }],
-       gallery: [{ src: "assets/actividad-1.jpg", title: "Nombre de la actividad", alt: "Descripción real de la foto" }]
-    */
-    events: [], news: [], articles: [], partners: [],
-    gallery: [
-      { src: "assets/asociacion.jpg", title: "Integrantes de LEX SPHERE", alt: "Fotografía grupal de los integrantes de LEX SPHERE" },
-      { src: "assets/directores.jpg", title: "Equipo directivo de LEX SPHERE", alt: "Fotografía grupal de los directores de LEX SPHERE" }
-    ]
-  };
+<script>
+"use strict";
 
-  const $ = (selector, root = document) => root.querySelector(selector);
-  const $$ = (selector, root = document) => [...root.querySelectorAll(selector)];
-  const escapeHTML = str => String(str ?? "").replace(/[&<>"']/g, ch => ({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[ch]));
-  const safeURL = path => {
-    const s = String(path ?? "").trim();
-    if (!s || /^(javascript|data|vbscript):/i.test(s) || s.startsWith("//")) return "";
-    return (/^https?:\/\//i.test(s) || !/^[a-z][\w+.-]*:/i.test(s)) ? s : "";
-  };
-  const formatDate = date => {
-    const d = new Date(`${date}T12:00:00`);
-    return isNaN(d.getTime()) ? "Fecha por confirmar" : d.toLocaleDateString("es-PE", {day:"numeric", month:"long", year:"numeric"});
-  };
-  const initials = name => String(name).split(/\s+/).filter(Boolean).slice(0, 2).map(w => w[0]?.toUpperCase() || "").join("");
-  const avatar = (name, photo = "") => safeURL(photo)
-    ? `<span class="avatar"><img src="${escapeHTML(safeURL(photo))}" alt="Retrato de ${escapeHTML(name)}" loading="lazy" onerror="this.parentElement.textContent='${escapeHTML(initials(name))}'"></span>`
-    : `<span class="avatar" aria-hidden="true">${escapeHTML(initials(name))}</span>`;
-  const emptyState = (title, detail) => `<div class="empty-state" style="grid-column:1/-1"><h4>${escapeHTML(title)}</h4><p>${escapeHTML(detail)}</p></div>`;
+/*
+  IMÁGENES
+  Primero busca los nombres de la carpeta assets.
+  Después busca los archivos en la raíz del repositorio.
+  Finalmente prueba los nombres originales de las fotografías.
+*/
+const imagePaths = {
+  logo: [
+    "assets/logo-lex-sphere.png",
+    "logo-lex-sphere.png",
+    "image(20261027-021827).png"
+  ],
+  directores: [
+    "assets/directores.jpg",
+    "directores.jpg",
+    "image(20261027-021517).png"
+  ],
+  asociacion: [
+    "assets/asociacion.jpg",
+    "asociacion.jpg",
+    "image(20261027-021547).png"
+  ],
+  jimena: [
+    "assets/jimena-rivas.jpg",
+    "jimena-rivas.jpg",
+    "IMG_1330.JPEG"
+  ],
+  betsy: [
+    "assets/betsy-babilonia.jpg",
+    "betsy-babilonia.jpg",
+    "IMG_4643(1).PNG"
+  ]
+};
 
-  // IDENTIDAD
-  $("#missionText").textContent = siteData.identity.mission;
-  $("#visionText").textContent = siteData.identity.vision;
-  if (safeURL(siteData.identity.logo)) { $("#brandLogo").src = safeURL(siteData.identity.logo); $("#brandLogo").hidden = false; $("#brandLogo").onerror = () => { $("#brandLogo").hidden = true; }; }
-  $("#currentYear").textContent = new Date().getFullYear();
+function attachImage(img) {
+  const paths = imagePaths[img.dataset.photo] || [];
+  let pos = 0;
 
-  // CARRUSEL PRINCIPAL: automático, con flechas y puntos.
-  const slides = siteData.heroSlides.filter(s => s && s.title);
-  let activeSlide = 0, slideTimer = null;
-  function renderSlides() {
-    $("#heroSlides").innerHTML = slides.map((s, i) => {
-      const src = safeURL(s.image);
-      return `<div class="hero-slide ${i === 0 ? "is-active" : ""}" data-index="${i}" aria-hidden="${i !== 0}"><div class="hero-media">${src ? `<img class="hero-photo" src="${escapeHTML(src)}" alt="${escapeHTML(s.alt || "Fotografía institucional de LEX SPHERE")}">` : `<div class="hero-art" aria-hidden="true"></div>`}</div></div>`;
-    }).join("");
-    $("#slideDots").innerHTML = slides.map((s,i) => `<button type="button" class="hero-dot ${i === 0 ? "is-active" : ""}" data-index="${i}" aria-label="Ver diapositiva ${i+1}" aria-pressed="${i === 0}"></button>`).join("");
-    $$("#slideDots button").forEach(btn => btn.addEventListener("click", () => { showSlide(Number(btn.dataset.index)); restartSlider(); }));
-    showSlide(0);
-  }
-  function showSlide(index) {
-    if (!slides.length) return;
-    activeSlide = (index + slides.length) % slides.length;
-    const slide = slides[activeSlide];
-    $$(".hero-slide").forEach((el,i) => { el.classList.toggle("is-active", i === activeSlide); el.setAttribute("aria-hidden", String(i !== activeSlide)); });
-    $$(".hero-dot").forEach((el,i) => { el.classList.toggle("is-active", i === activeSlide); el.setAttribute("aria-pressed", String(i === activeSlide)); });
-    $("#heroKicker").textContent = slide.kicker;
-    // Los titulares estilizados son textos redactados en este mismo archivo, no entradas externas.
-    $("#heroTitle").innerHTML = slide.title;
-    $("#heroDescription").textContent = slide.description;
-    $("#heroPhotoStatus").textContent = safeURL(slide.image) ? `Diapositiva ${activeSlide+1} de ${slides.length}` : "Espacio listo para fotografías institucionales";
-  }
-  function stopSlider() { clearInterval(slideTimer); slideTimer = null; $("#heroProgress").classList.remove("running"); }
-  function startSlider() { if (slides.length > 1 && !matchMedia("(prefers-reduced-motion: reduce)").matches && !slideTimer) { $("#heroProgress").classList.remove("running"); void $("#heroProgress").offsetWidth; $("#heroProgress").classList.add("running"); slideTimer = setInterval(() => { showSlide(activeSlide + 1); $("#heroProgress").classList.remove("running"); void $("#heroProgress").offsetWidth; $("#heroProgress").classList.add("running"); }, 6500); } }
-  function restartSlider() { stopSlider(); startSlider(); }
-  $("#slidePrev").addEventListener("click", () => { showSlide(activeSlide-1); restartSlider(); });
-  $("#slideNext").addEventListener("click", () => { showSlide(activeSlide+1); restartSlider(); });
-  $("#inicio").addEventListener("mouseenter", stopSlider);
-  $("#inicio").addEventListener("mouseleave", startSlider);
-  $("#inicio").addEventListener("focusin", stopSlider);
-  $("#inicio").addEventListener("focusout", e => { if (!e.currentTarget.contains(e.relatedTarget)) startSlider(); });
-  document.addEventListener("visibilitychange", () => document.hidden ? stopSlider() : restartSlider());
-  renderSlides(); startSlider();
-
-  // DIRECTIVA Y BIBLIOTECA DESPLEGABLE
-  $("#leadershipGrid").innerHTML = siteData.leadership.map(p => `<article class="leader-card">${avatar(p.name,p.photo)}<div><h3>${escapeHTML(p.name)}</h3><p>${escapeHTML(p.role)}</p></div></article>`).join("");
-  function renderCommissions(query = "") {
-    const needle = query.trim().toLocaleLowerCase("es-PE");
-    const matches = siteData.commissions.filter(c => [c.name, c.director, ...c.members.map(m => typeof m === "string" ? m : m.name)].join(" ").toLocaleLowerCase("es-PE").includes(needle));
-    $("#commissionGrid").innerHTML = matches.length ? matches.map((c,i) => `<details class="commission"><summary><span class="commission-name">${escapeHTML(c.name)}</span><span class="commission-director">${escapeHTML(c.directorRole)}: ${escapeHTML(c.director)}</span></summary><div class="commission-body"><p>${escapeHTML(c.description || "Información de la comisión por actualizar.")}</p><div class="commission-caption">Dirección de comisión</div><div class="commission-director-box">${avatar(c.director,c.photo)}<div><strong>${escapeHTML(c.director)}</strong><small>${escapeHTML(c.directorRole)} de ${escapeHTML(c.name)}</small></div></div><div class="commission-caption">Integrantes</div><div class="member-list">${c.members.length ? c.members.map(m => `<span class="member-chip">${escapeHTML(typeof m === "string" ? m : m.name)}</span>`).join("") : `<span class="member-empty">Directorio de integrantes pendiente de incorporar.</span>`}</div></div></details>`).join("") : `<div class="no-search-results" style="grid-column:1/-1">No se encontraron comisiones o integrantes con ese nombre.</div>`;
-  }
-  $("#teamSearch").addEventListener("input", e => renderCommissions(e.target.value));
-  renderCommissions();
-
-  // TARJETAS: EVENTOS, NOTICIAS Y PUBLICACIONES. Solo datos reales.
-  function renderContent(list, target, kind) {
-    const empty = { events: ["Todavía no hay actividades publicadas", "Aquí aparecerán los próximos eventos cuando se incorporen sus datos oficiales."], news: ["No hay comunicados registrados", "Los comunicados y noticias oficiales se mostrarán en esta sección."], articles: ["Biblioteca en preparación", "Cuando se incorporen artículos jurídicos, podrás consultarlos y filtrarlos aquí."] };
-    if (!list.length) { $(target).innerHTML = emptyState(...empty[kind]); return; }
-    $(target).innerHTML = list.map(item => {
-      const category = item.type || item.category || (kind === "news" ? "Comunicado" : "Publicación");
-      const description = item.description || item.summary || "";
-      const link = safeURL(item.url);
-      return `<article class="content-card"><span class="tag">${escapeHTML(category)}</span><h4>${escapeHTML(item.title)}</h4>${description ? `<p>${escapeHTML(description)}</p>` : ""}<span class="meta">${item.date ? escapeHTML(formatDate(item.date)) : ""}${item.author ? ` · ${escapeHTML(item.author)}` : ""}</span>${link ? `<a href="${escapeHTML(link)}" target="_blank" rel="noopener noreferrer">Ver publicación ↗</a>` : ""}</article>`;
-    }).join("");
-  }
-  renderContent(siteData.events, "#eventsGrid", "events");
-  renderContent(siteData.news, "#newsGrid", "news");
-  const filters = ["Todas", "Análisis", "Investigación", "Opinión", "Otros"];
-  let activeFilter = "Todas";
-  $("#publicationFilters").innerHTML = filters.map(f => `<button type="button" class="filter-btn ${f === activeFilter ? "active" : ""}" data-filter="${f}" aria-pressed="${f === activeFilter}">${f}</button>`).join("");
-  $("#publicationFilters").addEventListener("click", e => {
-    const btn = e.target.closest("button[data-filter]"); if (!btn) return;
-    activeFilter = btn.dataset.filter;
-    $$("#publicationFilters button").forEach(el => { el.classList.toggle("active", el === btn); el.setAttribute("aria-pressed", String(el === btn)); });
-    renderContent(siteData.articles.filter(a => activeFilter === "Todas" || (a.category || "Otros").toLowerCase() === activeFilter.toLowerCase()), "#publicationsGrid", "articles");
-  });
-  renderContent(siteData.articles, "#publicationsGrid", "articles");
-
-  // CALENDARIO: consume únicamente la lista siteData.events.
-  let calYear = new Date().getFullYear(), calMonth = new Date().getMonth();
-  function renderCalendar() {
-    const first = new Date(calYear, calMonth, 1);
-    const monthName = first.toLocaleDateString("es-PE",{month:"long",year:"numeric"});
-    $("#calendarTitle").textContent = monthName.charAt(0).toUpperCase() + monthName.slice(1);
-    const dayStart = (first.getDay()+6)%7;
-    const length = new Date(calYear,calMonth+1,0).getDate();
-    const entries = siteData.events.filter(e => {
-      if (!/^\d{4}-\d{2}-\d{2}$/.test(e.date || "")) return false;
-      const [y,m] = e.date.split("-").map(Number);
-      return y === calYear && m === calMonth+1;
-    }).sort((a,b) => a.date.localeCompare(b.date));
-    const dated = new Set(entries.map(e => Number(e.date.slice(8,10))));
-    const today = new Date();
-    let cells = ["L","M","M","J","V","S","D"].map(w => `<div class="weekday">${w}</div>`).join("");
-    for (let x=0; x<dayStart; x++) cells += `<span class="day muted" aria-hidden="true"></span>`;
-    for (let d=1; d<=length; d++) {
-      const isToday = calYear === today.getFullYear() && calMonth === today.getMonth() && d === today.getDate();
-      const hasEvent = dated.has(d);
-      cells += `<span class="day ${isToday ? "is-today" : ""} ${hasEvent ? "has-event" : ""}" ${isToday ? 'aria-current="date"' : ""} ${hasEvent ? `title="${entries.filter(e => Number(e.date.slice(8,10)) === d).length} actividad(es)"` : ""}>${d}</span>`;
+  const next = () => {
+    if (pos < paths.length) {
+      img.src = encodeURI(paths[pos++]);
+    } else {
+      img.removeAttribute("src");
+      img.alt += " (pendiente de cargar en GitHub)";
+      img.parentElement.classList.add("missing");
     }
-    $("#calendarGrid").innerHTML = cells;
-    $("#agendaItems").innerHTML = entries.length ? entries.map(e => `<div class="agenda-event"><small>${escapeHTML(formatDate(e.date))}</small><strong>${escapeHTML(e.title)}</strong>${safeURL(e.url) ? `<a href="${escapeHTML(safeURL(e.url))}" target="_blank" rel="noopener noreferrer">Ver información ↗</a>` : ""}</div>`).join("") : `<p>No hay actividades registradas para este mes.</p>`;
+  };
+
+  img.addEventListener("error", next);
+  next();
+}
+
+document.querySelectorAll("img[data-photo]").forEach(attachImage);
+
+/* CARRUSEL */
+const slides = [...document.querySelectorAll(".slide")];
+const dots = [...document.querySelectorAll(".dot")];
+
+let slideIndex = 0;
+let autoSlide;
+
+function showSlide(n) {
+  slideIndex = (n + slides.length) % slides.length;
+
+  slides.forEach((s,i) =>
+    s.classList.toggle("active", i === slideIndex)
+  );
+
+  dots.forEach((d,i) =>
+    d.classList.toggle("active", i === slideIndex)
+  );
+}
+
+function autoplay() {
+  clearInterval(autoSlide);
+  autoSlide = setInterval(() => showSlide(slideIndex + 1), 6500);
+}
+
+document.getElementById("prev").onclick = () => {
+  showSlide(slideIndex - 1);
+  autoplay();
+};
+
+document.getElementById("next").onclick = () => {
+  showSlide(slideIndex + 1);
+  autoplay();
+};
+
+dots.forEach((d,i) => {
+  d.onclick = () => {
+    showSlide(i);
+    autoplay();
+  };
+});
+
+if (!matchMedia("(prefers-reduced-motion: reduce)").matches) {
+  autoplay();
+}
+
+/* MENÚ MÓVIL */
+const menuBtn = document.getElementById("menuBtn");
+const nav = document.getElementById("nav");
+
+menuBtn.onclick = () => {
+  const open = nav.classList.toggle("open");
+  menuBtn.setAttribute("aria-expanded", String(open));
+  menuBtn.textContent = open ? "×" : "☰";
+};
+
+nav.querySelectorAll("a").forEach(a => {
+  a.onclick = () => {
+    nav.classList.remove("open");
+    menuBtn.setAttribute("aria-expanded", "false");
+    menuBtn.textContent = "☰";
+  };
+});
+
+/* DIRECTORIO DE COMISIONES */
+const commissions = [
+  [
+    "Relaciones Internacionales",
+    "Sasha Salizar",
+    "Directora",
+    "Vinculación con instituciones, asociaciones y organizaciones externas."
+  ],
+  [
+    "Eventos",
+    "Fernando Tapia",
+    "Director",
+    "Organización y coordinación de las actividades académicas e institucionales."
+  ],
+  [
+    "Podcast",
+    "Lukas Mieses",
+    "Director",
+    "Desarrollo y coordinación de contenidos en formato podcast."
+  ],
+  [
+    "Contenido Legal",
+    "Marcos Mamani",
+    "Director",
+    "Elaboración y difusión de materiales jurídicos."
+  ],
+  [
+    "Revisión y Control Académico",
+    "Damaris Choque",
+    "Directora",
+    "Revisión académica y seguimiento de contenidos y actividades formativas."
+  ],
+  [
+    "Asuntos Políticos",
+    "Flordeliz Obregón",
+    "Directora",
+    "Análisis y difusión de asuntos políticos desde una perspectiva académica."
+  ],
+  [
+    "Difusión y Alcance Digital",
+    "Dayana",
+    "Directora",
+    "Difusión digital y comunicación de las iniciativas de la asociación."
+  ],
+  [
+    "Gestión Institucional",
+    "Milagros",
+    "Directora",
+    "Coordinación interna y apoyo a la gestión de la asociación."
+  ],
+  [
+    "Producción Audiovisual y Diseño",
+    "Gianira Echarri",
+    "Directora",
+    "Producción de piezas gráficas, audiovisuales y materiales institucionales."
+  ]
+];
+
+// Los integrantes podrán incorporarse cuando se confirme la lista.
+const members = {};
+
+const esc = s => String(s ?? "").replace(
+  /[&<>"']/g,
+  c => ({
+    "&":"&amp;",
+    "<":"&lt;",
+    ">":"&gt;",
+    '"':"&quot;",
+    "'":"&#39;"
+  }[c])
+);
+
+function renderCommissions(q = "") {
+  const filtered = commissions.filter(c =>
+    c.join(" ").toLowerCase().includes(q.toLowerCase().trim()) ||
+    (members[c[0]] || []).join(" ").toLowerCase().includes(q.toLowerCase().trim())
+  );
+
+  document.getElementById("commissions").innerHTML =
+    filtered.length
+    ? filtered.map(c => `
+      <details class="commission">
+        <summary>
+          <strong>${esc(c[0])}</strong>
+          <small>${esc(c[2])}: ${esc(c[1])}</small>
+        </summary>
+        <div class="commission-body">
+          <p>${esc(c[3])}</p>
+          <b>Dirección:</b> ${esc(c[1])}
+          <p>
+            <b>Integrantes:</b>
+            ${(members[c[0]] || []).length
+              ? (members[c[0]] || []).map(esc).join(", ")
+              : '<span class="placeholder">Directorio pendiente de completar.</span>'}
+          </p>
+        </div>
+      </details>
+    `).join("")
+    : "<p>No se encontraron resultados.</p>";
+}
+
+renderCommissions();
+
+document.getElementById("search").oninput = e =>
+  renderCommissions(e.target.value);
+
+/*
+  INFORMACIÓN EDITABLE
+
+  Las actividades, noticias y publicaciones permanecen vacías
+  hasta que se proporcionen datos institucionales confirmados.
+*/
+const siteData = {
+  events: [],
+  news: [],
+  articles: [],
+  partners: []
+};
+
+function renderCards(items, id, emptyTitle, emptyDescription) {
+  document.getElementById(id).innerHTML =
+    items.length
+    ? items.map(item => `
+      <article class="card">
+        <span class="date">${esc(item.date || item.category || "")}</span>
+        <h3>${esc(item.title)}</h3>
+        <p>${esc(item.description || "")}</p>
+        ${item.url?.startsWith("https://")
+          ? `<a href="${esc(item.url)}" target="_blank"
+               rel="noopener noreferrer">Más información ↗</a>`
+          : ""}
+      </article>
+    `).join("")
+    : `
+      <div class="empty">
+        <h3>${emptyTitle}</h3>
+        <p>${emptyDescription}</p>
+      </div>
+    `;
+}
+
+renderCards(
+  siteData.events,
+  "events",
+  "Próximas actividades",
+  "Las actividades confirmadas aparecerán aquí."
+);
+
+renderCards(
+  siteData.news,
+  "news",
+  "Sin comunicados publicados",
+  "Las noticias oficiales se añadirán en este espacio."
+);
+
+renderCards(
+  siteData.partners,
+  "partners",
+  "Alianzas por incorporar",
+  "Aquí aparecerán los convenios y colaboraciones confirmados."
+);
+
+/* FILTROS DE PUBLICACIONES */
+const filterValues = ["Todas","Análisis","Investigación","Opinión"];
+let activeFilter = "Todas";
+
+document.getElementById("filters").innerHTML =
+  filterValues.map(f => `
+    <button data-filter="${f}"
+      class="${f === activeFilter ? "active" : ""}">
+      ${f}
+    </button>
+  `).join("");
+
+function showArticles() {
+  renderCards(
+    siteData.articles.filter(a =>
+      activeFilter === "Todas" || a.category === activeFilter
+    ),
+    "articles",
+    "Biblioteca en preparación",
+    "Las publicaciones se incorporarán cuando estén disponibles."
+  );
+}
+
+document.getElementById("filters").onclick = e => {
+  const b = e.target.closest("button[data-filter]");
+  if (!b) return;
+
+  activeFilter = b.dataset.filter;
+
+  document.querySelectorAll("#filters button").forEach(x =>
+    x.classList.toggle("active", x === b)
+  );
+
+  showArticles();
+};
+
+showArticles();
+
+/* CALENDARIO INTERACTIVO */
+let displayed = new Date();
+displayed.setDate(1);
+
+function renderCalendar() {
+  const y = displayed.getFullYear();
+  const m = displayed.getMonth();
+
+  document.getElementById("monthTitle").textContent =
+    displayed.toLocaleDateString("es-PE", {
+      month:"long",
+      year:"numeric"
+    });
+
+  let html = ["L","M","M","J","V","S","D"]
+    .map(d => `<span class="weekday">${d}</span>`)
+    .join("");
+
+  const start = (new Date(y,m,1).getDay() + 6) % 7;
+
+  for (let k=0; k<start; k++) {
+    html += "<span></span>";
   }
-  $("#calPrev").addEventListener("click", () => { const d = new Date(calYear, calMonth-1, 1); calYear = d.getFullYear(); calMonth = d.getMonth(); renderCalendar(); });
-  $("#calNext").addEventListener("click", () => { const d = new Date(calYear, calMonth+1, 1); calYear = d.getFullYear(); calMonth = d.getMonth(); renderCalendar(); });
-  $("#calToday").addEventListener("click", () => { const d = new Date(); calYear = d.getFullYear(); calMonth = d.getMonth(); renderCalendar(); });
+
+  const today = new Date();
+  const dayCount = new Date(y,m+1,0).getDate();
+
+  const monthEvents = siteData.events.filter(e =>
+    /^\d{4}-\d{2}-\d{2}$/.test(e.date || "") &&
+    Number(e.date.slice(0,4)) === y &&
+    Number(e.date.slice(5,7)) === m+1
+  );
+
+  for (let d=1; d<=dayCount; d++) {
+    const isToday =
+      today.getFullYear() === y &&
+      today.getMonth() === m &&
+      today.getDate() === d;
+
+    const hasEvent = monthEvents.some(e =>
+      Number(e.date.slice(8)) === d
+    );
+
+    html += `
+      <span class="${isToday ? "today" : ""} ${hasEvent ? "has-event" : ""}">
+        ${d}
+      </span>
+    `;
+  }
+
+  document.getElementById("calendarDays").innerHTML = html;
+
+  document.getElementById("agendaItems").innerHTML =
+    monthEvents.length
+    ? monthEvents.map(e => `
+      <div class="agenda-item">
+        <small>${esc(e.date)}</small>
+        <b>${esc(e.title)}</b>
+      </div>
+    `).join("")
+    : "<p>No hay actividades registradas para este mes.</p>";
+}
+
+document.getElementById("backMonth").onclick = () => {
+  displayed.setMonth(displayed.getMonth()-1);
   renderCalendar();
+};
 
-  // CONVENIOS CONFIRMADOS. Nunca se muestran socios ficticios.
-  $("#partnersGrid").innerHTML = siteData.partners.length ? siteData.partners.map(p => {
-    const logo = safeURL(p.logo), url = safeURL(p.url);
-    const content = `<div class="partner-card">${logo ? `<img src="${escapeHTML(logo)}" alt="Logotipo de ${escapeHTML(p.name)}" loading="lazy">` : `<strong>${escapeHTML(p.name)}</strong>`}</div>`;
-    return url ? `<a href="${escapeHTML(url)}" target="_blank" rel="noopener noreferrer" aria-label="Visitar ${escapeHTML(p.name)}">${content}</a>` : content;
-  }).join("") : `<div style="grid-column:1/-1">${emptyState("Directorio de alianzas por incorporar", "Se publicarán las instituciones con las que se hayan confirmado acuerdos o colaboraciones.")}</div>`;
+document.getElementById("forwardMonth").onclick = () => {
+  displayed.setMonth(displayed.getMonth()+1);
+  renderCalendar();
+};
 
-  // GALERÍA Y VISOR DE FOTOGRAFÍAS
-  const photos = siteData.gallery.filter(photo => safeURL(photo.src));
-  $("#galleryGrid").innerHTML = photos.length ? photos.map((p,i) => `<button class="gallery-tile" data-photo="${i}" type="button" aria-label="Ampliar fotografía: ${escapeHTML(p.title || p.alt || "LEX SPHERE")}"><img src="${escapeHTML(safeURL(p.src))}" alt="${escapeHTML(p.alt || p.title || "Fotografía de LEX SPHERE")}" loading="lazy"><span>${escapeHTML(p.title || "LEX SPHERE")}</span></button>`).join("") : emptyState("Fotografías pendientes de incorporar", "La galería estará disponible cuando se carguen las imágenes oficiales de la asociación.");
-  let previousFocus = null;
-  function closeLightbox() { $("#lightbox").hidden = true; document.body.classList.remove("modal-open"); previousFocus?.focus(); }
-  $("#galleryGrid").addEventListener("click", e => {
-    const btn = e.target.closest("[data-photo]"); if (!btn) return;
-    const p = photos[Number(btn.dataset.photo)]; if (!p) return;
-    previousFocus = document.activeElement;
-    $("#lightboxImage").src = safeURL(p.src);
-    $("#lightboxImage").alt = p.alt || p.title || "Fotografía de LEX SPHERE";
-    $("#lightboxCaption").textContent = p.title || "LEX SPHERE";
-    $("#lightbox").hidden = false;
+renderCalendar();
+
+/* GALERÍA AMPLIABLE */
+const modal = document.getElementById("modal");
+const modalImg = document.getElementById("modalImage");
+
+document.querySelectorAll("[data-open]").forEach(btn => {
+  btn.onclick = () => {
+    const source = btn.querySelector("img");
+
+    if (!source.currentSrc || !source.naturalWidth) return;
+
+    modalImg.src = source.currentSrc;
+    modalImg.alt = source.alt;
+
+    document.getElementById("modalCaption").textContent =
+      btn.querySelector("span").textContent.replace(
+        " · Ver imagen ↗", ""
+      );
+
+    modal.hidden = false;
     document.body.classList.add("modal-open");
-    $("#lightboxClose").focus();
-  });
-  $("#lightboxClose").addEventListener("click", closeLightbox);
-  $("#lightbox").addEventListener("click", e => { if (e.target === e.currentTarget) closeLightbox(); });
-  document.addEventListener("keydown", e => {
-    if (!$("#lightbox").hidden) {
-      if (e.key === "Escape") closeLightbox();
-      if (e.key === "Tab") { e.preventDefault(); $("#lightboxClose").focus(); }
-    }
-  });
+    document.getElementById("closeModal").focus();
+  };
+});
 
-  // MENÚ EN PANTALLAS PEQUEÑAS
-  const mobileNav = $("#mobileNav"), menuToggle = $("#menuToggle");
-  function setMenu(open) { mobileNav.classList.toggle("open",open); menuToggle.setAttribute("aria-expanded",String(open)); menuToggle.setAttribute("aria-label",open ? "Cerrar menú" : "Abrir menú"); menuToggle.textContent = open ? "×" : "☰"; document.body.classList.toggle("menu-open",open); }
-  menuToggle.addEventListener("click", () => setMenu(!mobileNav.classList.contains("open")));
-  $$("a[href^='#']",mobileNav).forEach(a => a.addEventListener("click", () => { setMenu(false); $$("details",mobileNav).forEach(d=> d.open=false); }));
-  document.addEventListener("keydown",e => { if (e.key === "Escape" && mobileNav.classList.contains("open")) { setMenu(false); menuToggle.focus(); } });
-  window.addEventListener("resize", () => { if (innerWidth > 900 && mobileNav.classList.contains("open")) setMenu(false); });
+function closeModal() {
+  modal.hidden = true;
+  document.body.classList.remove("modal-open");
+}
 
-  // ANIMACIÓN SUAVE AL DESPLAZARSE
-  if ("IntersectionObserver" in window && !matchMedia("(prefers-reduced-motion: reduce)").matches) {
-    document.body.classList.add("js-ready");
-    const observer = new IntersectionObserver((entries,obs) => entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add("visible"); obs.unobserve(e.target); } }), {threshold:.11});
-    $$(".reveal").forEach(e => observer.observe(e));
-  }
-  </script>
+document.getElementById("closeModal").onclick = closeModal;
+
+modal.onclick = e => {
+  if (e.target === modal) closeModal();
+};
+
+document.onkeydown = e => {
+  if (e.key === "Escape") closeModal();
+};
+
+document.getElementById("year").textContent =
+  new Date().getFullYear();
+
+</script>
 </body>
 </html>
