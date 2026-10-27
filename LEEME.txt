@@ -1,0 +1,41 @@
+LEX SPHERE · WEB INSTITUCIONAL — EDICIÓN EDITORIAL
+=================================================
+
+CÓMO ABRIR LA WEB
+1. Descomprime la carpeta y abre index.html en tu navegador.
+2. Mantén la carpeta assets junto a index.html; contiene las 5 imágenes oficiales.
+3. El HTML incluye el diseño CSS y el JavaScript: no necesitas instalar nada.
+
+PUBLICACIÓN EN GITHUB PAGES
+1. En tu repositorio de GitHub, sube index.html y la carpeta assets.
+2. En Settings > Pages elige Deploy from a branch, main y / (root).
+3. Guarda los cambios. El nombre index.html debe mantenerse.
+
+PARA ACTUALIZAR DATOS
+- Dentro de index.html, busca "const siteData".
+- Las comisiones están en siteData.commissions; usa la propiedad members
+  para incorporar integrantes y photo para sus fotografías reales.
+- Las noticias y actividades se publican desde siteData.news y siteData.events.
+  Las actividades con fechas YYYY-MM-DD aparecerán en el calendario.
+- Las publicaciones se editan en siteData.articles.
+- Los convenios confirmados se incorporan a siteData.partners.
+- La galería se actualiza desde siteData.gallery.
+- El calendario se alimenta de los eventos: no necesita actualizarse aparte.
+
+ESTILO
+Cormorant Garamond: títulos institucionales y citas.
+Manrope: navegación, textos, botones y tarjetas.
+Paleta: azul marino, dorado y marfil, inspirada en el logotipo original.
+Las fuentes se cargan desde Google Fonts si hay conexión; hay reemplazos.
+
+MATERIALES OFICIALES
+assets/logo-lex-sphere.png
+assets/asociacion.jpg
+assets/directores.jpg
+assets/jimena-rivas.jpg
+assets/betsy-babilonia.jpg
+
+IMPORTANTE
+Los integrantes de las comisiones, noticias, eventos, publicaciones y convenios
+no suministrados permanecen pendientes, sin datos inventados.
+Los textos de misión y visión son propuestas sujetas a validación institucional.
